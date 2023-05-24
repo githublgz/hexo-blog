@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>node-入门 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="前言
+nodejs是事件驱动、非阻塞I&amp;#x2F;O模型
+
+
+阻塞：i&amp;#x2F;o时进程休眠等待完成后进行下一步
+非阻塞：i&amp;#x2F;o时函数立即返回，进程不等待i&amp;#x2F;o返回
+
+
+i&amp;#,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="node-入门 - lgz-BLOG"/>
+    <meta name="twitter:description" content="前言
+nodejs是事件驱动、非阻塞I&amp;#x2F;O模型
+
+
+阻塞：i&amp;#x2F;o时进程休眠等待完成后进行下一步
+非阻塞：i&amp;#x2F;o时函数立即返回，进程不等待i&amp;#x2F;o返回
+
+
+i&amp;#,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="node-入门 - lgz-BLOG"/>
+    <meta property="og:description" content="前言
+nodejs是事件驱动、非阻塞I&amp;#x2F;O模型
+
+
+阻塞：i&amp;#x2F;o时进程休眠等待完成后进行下一步
+非阻塞：i&amp;#x2F;o时函数立即返回，进程不等待i&amp;#x2F;o返回
+
+
+i&amp;#,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">node-入门</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">node-入门</h1>
+        <div class="stuff">
+            <span>五月 05, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>nodejs是事件驱动、非阻塞I&#x2F;O模型</p>
+</blockquote>
+<ul>
+<li>阻塞：i&#x2F;o时进程休眠等待完成后进行下一步</li>
+<li>非阻塞：i&#x2F;o时函数立即返回，进程不等待i&#x2F;o返回</li>
+</ul>
+<blockquote>
+<p>i&#x2F;o完成后通知主程序，如何告诉呢？通过事件驱动</p>
+</blockquote>
+<p><strong>事件驱动</strong></p>
+<ul>
+<li>i&#x2F;o等异步操作结束后通知</li>
+<li>内部实现是观察者模式</li>
+</ul>
+<p><strong>CPU密集和I&#x2F;O密集</strong></p>
+<ul>
+<li><code>CPU</code>密集：压缩、解压、加密、解密</li>
+<li><code>I/O</code>密集：文件操作、网络操作、数据库</li>
+</ul>
+<p><strong>web常见场景(web是一个I&#x2F;O密集)</strong></p>
+<ul>
+<li>静态资源读取</li>
+<li>数据库操作</li>
+<li>渲染页面</li>
+</ul>
+<p><strong>高并发应用之道</strong></p>
+<ul>
+<li>增加机器数</li>
+<li>增加每台机器CPU数-多核</li>
+</ul>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/347.png" alt="img"></p>
+<p><strong>进程、线程</strong></p>
+<ul>
+<li>进程：一个运行的程序（进程包括线程，如何水分子里面还有分子原子）</li>
+<li>线程：进程内一个独立的，可调度的执行单元</li>
+<li>多线程：启动一个进程，在一个进程内启动多个线程，这样多个线程可以执行多个任务</li>
+</ul>
+<p><strong>Nodejs的单线程</strong></p>
+<ul>
+<li>单线程只是针对主进程，I&#x2F;O操作系统底层多线程调度</li>
+<li>单线程并不是单进程</li>
+</ul>
+<p><strong>Nodejs原理</strong></p>
+<ul>
+<li>Node是单线程的，只开一个进程，一个进程也只开一个线程。一个CPU上只开一个进程，一个进程里面只有一个线程</li>
+</ul>
+<p><strong>nodejs高性能的前提</strong></p>
+<ul>
+<li>高并发</li>
+<li><code>I/O</code>密集</li>
+</ul>
+<p><strong>常用场景</strong></p>
+<ul>
+<li><code>web Server</code></li>
+<li>本地代码构建 (<code>webpack/grunt/gulp</code>)</li>
+<li>使用工具的开发</li>
+</ul>
+<h2 id="二、nodejs与JavaScrip异同"><a href="#二、nodejs与JavaScrip异同" class="headerlink" title="二、nodejs与JavaScrip异同"></a>二、nodejs与JavaScrip异同</h2><ul>
+<li><code>ECMAScript</code></li>
+<li>语法</li>
+<li>内置对象、方法</li>
+</ul>
+<p><strong>顶层对象</strong></p>
+<ul>
+<li><code>JavaScript</code>：<code>window</code></li>
+<li><code>nodejs</code>: <code>global</code></li>
+<li>在ECMA部分node和JavaScript是一样的，比如数据类型的定义，语法结构、内置对象</li>
+</ul>
+<h2 id="三、模块"><a href="#三、模块" class="headerlink" title="三、模块"></a>三、模块</h2><ul>
+<li>在<code>node</code>中文件和模块是一一对应的，也就是一个文件一个模块。**file是每个模块下必有的一个属性，输出文件的绝对路径。<code>**dirname</code> 是文件夹名称绝对路径</li>
+<li>每个模块都有自己的作用域</li>
+<li>我们通过var声明的变量并非全局，而是该模块作用域下的</li>
+</ul>
+<p><strong>模块加载机制</strong></p>
+<ul>
+<li><code>require</code>加载模块</li>
+<li>1、首先按照加载模块的文件名称进行查找</li>
+<li>2、如果没有找到就会在文件模块文件名称后加载<code>.js</code>进行查找</li>
+<li>3、如果还没有找到，就在文件名称后加载<code>.json</code>后缀，进行查找</li>
+<li>4、如果还没找到，就会在文件名称后加上<code>.node</code>进行查找</li>
+<li>查找流程：<strong>文件名称-&gt;.js -&gt; .json-&gt;.node</strong></li>
+</ul>
+<p><strong>exports、module</strong></p>
+<ul>
+<li>保存当前模块有关的一些信息</li>
+<li><code>module.exports</code> 一般使用这个,把一个模块中的变量对外提供访问</li>
+<li>在模块作用域，还有一个内置的模块对象，<code>exports</code>其实就是<code>module.exports</code>,他们两个都是指向同一个对象</li>
+</ul>
+<h2 id="四、node目录的配置"><a href="#四、node目录的配置" class="headerlink" title="四、node目录的配置"></a>四、node目录的配置</h2><ul>
+<li><p>配置文件 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dependencies : 当前项目所使用到的依赖模块</li>
+<li>安装方式: <code>npm install</code> 自动读取<code>package.json</code>自动安装</li>
+</ul>
+</li>
+<li><p><code>router</code>目录 用来存放路由文件</p>
+</li>
+<li><p><code>views</code>目录 用来存放<code>html</code>模板文件</p>
+</li>
+<li><p><code>module</code>目录 自己写的一些模块</p>
+</li>
+</ul>
+<h2 id="五、第一个node服务器"><a href="#五、第一个node服务器" class="headerlink" title="五、第一个node服务器"></a>五、第一个node服务器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//   安装好node就有的一个模块</span><br><span class="line">//  用来创建http服务器的</span><br><span class="line">const http = require(`http`);</span><br><span class="line"></span><br><span class="line">http.createServer((request,response) =&gt; &#123;</span><br><span class="line">    //request 请求对象     浏览器 请求 服务器所有的内容保存在这个对象里</span><br><span class="line">    //response 响应对象     服务器响应浏览器 所有的方法</span><br><span class="line">    response.writeHead(200 , &#123; &#x27;Content-Type&#x27;:&#x27;text/html&#x27; &#125; );</span><br><span class="line">    //  .end() 结束响应 同时发送一个 Hello Word</span><br><span class="line">    response.end(&#x27;Hello Word&#x27;)</span><br><span class="line">&#125;).listen(233);</span><br><span class="line">//.listen(); 监听端口 233  自定义的端口号</span><br><span class="line">// 如果开启了node服务器  修改完之后的代码必须 重启才能生效</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

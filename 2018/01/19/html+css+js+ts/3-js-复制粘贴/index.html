@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js-复制粘贴 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、基本使用1.1 API 介绍复制、剪切、粘贴事件
+
+copy 发生复制操作时触发;
+cut 发生剪切操作时触发;
+paste 发生粘贴操作时触发
+
+
+每个事件都有一个 before 事件对应：b,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="js-复制粘贴 - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、基本使用1.1 API 介绍复制、剪切、粘贴事件
+
+copy 发生复制操作时触发;
+cut 发生剪切操作时触发;
+paste 发生粘贴操作时触发
+
+
+每个事件都有一个 before 事件对应：b,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="js-复制粘贴 - lgz-BLOG"/>
+    <meta property="og:description" content="一、基本使用1.1 API 介绍复制、剪切、粘贴事件
+
+copy 发生复制操作时触发;
+cut 发生剪切操作时触发;
+paste 发生粘贴操作时触发
+
+
+每个事件都有一个 before 事件对应：b,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">js-复制粘贴</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">js-复制粘贴</h1>
+        <div class="stuff">
+            <span>一月 19, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、基本使用"><a href="#一、基本使用" class="headerlink" title="一、基本使用"></a>一、基本使用</h2><h3 id="1-1-API-介绍"><a href="#1-1-API-介绍" class="headerlink" title="1.1 API 介绍"></a>1.1 API 介绍</h3><p><strong>复制、剪切、粘贴事件</strong></p>
+<ul>
+<li><code>copy</code> 发生复制操作时触发;</li>
+<li><code>cut</code> 发生剪切操作时触发;</li>
+<li><code>paste</code> 发生粘贴操作时触发</li>
+</ul>
+<blockquote>
+<p>每个事件都有一个 <code>before</code> 事件对应：<code>beforecopy</code>、<code>beforecut</code>、<code>beforepaste</code>。这几个 <code>before</code>一般不怎么用，所以我们把注意力放在另外三个事件就可以了</p>
+</blockquote>
+<p><strong>触发条件</strong></p>
+<ul>
+<li>鼠标右键菜单的<code>复制</code>、<code>粘贴</code>、<code>剪切</code></li>
+<li>使用了相应的键盘组合键，比如:<code>command+c</code>、<code>command+v</code></li>
+</ul>
+<p><strong>使用姿势</strong></p>
+<blockquote>
+<p>以 <code>copy</code> 为例</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">document.body.oncopy = e =&gt; &#123;</span><br><span class="line">  // 监听全局复制 做点什么</span><br><span class="line">&#125;;</span><br><span class="line">// 还有这种写法：</span><br><span class="line">document.addEventListener(&#x27;copy&#x27;, e =&gt; &#123;</span><br><span class="line">  // 监听全局复制 做点什么</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面是在<code>document.body</code>上全局监听的，然而很多人不知道的是，我们还可以为某些 <code>dom</code> 单独添加剪切板事件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// html结构</span><br><span class="line">&lt;div id=&quot;test1&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;test2&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // 写法一样：</span><br><span class="line">    let test1 = document.querySelector(&#x27;#test1&#x27;);</span><br><span class="line">    test1.oncopy = e =&gt; &#123;</span><br><span class="line">        // 监听test1发生的复制事件 做点什么</span><br><span class="line">        // test1发生的复制事件会触发回调，其他地方不会触发回调</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其他事件也是一样的</p>
+</blockquote>
+<h3 id="1-2-clipboardData"><a href="#1-2-clipboardData" class="headerlink" title="1.2 clipboardData"></a>1.2 clipboardData</h3><p><strong>clipboardData 对象:用于访问以及修改剪贴板中的数据</strong></p>
+<blockquote>
+<p>不同浏览器，所属的对象不同：在 <code>IE</code> 中这个对象是<code>window</code>对象的属性，在<code>Chrome</code>、<code>Safari</code>和<code>Firefox</code>中，这个对象是相应的<code>event</code>对象的属性。所以我们在使用的时候，需要做一下如下兼容</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">document.body.oncopy = e =&gt; &#123;</span><br><span class="line">  let clipboardData = e.clipboardData || window.clipboardData;</span><br><span class="line">  // 获取clipboardData对象 + do something</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>对象方法</strong></p>
+<blockquote>
+<p>对象有三个方法: <code>getData()</code>、<code>setData()</code>、<code>clearData()</code></p>
+</blockquote>
+<p><strong>getData() 访问剪切板中的数据</strong></p>
+<blockquote>
+<p><code>getData()</code>接受一个<code>text</code>参数，即要取得的数据的格式</p>
+</blockquote>
+<p><strong>在复制、剪切、粘贴触发的事件的数据</strong></p>
+<blockquote>
+<p>实际上在 <code>chorme</code> 上测试只有<code>paste</code>粘贴的时候才能用<code>getData()</code>访问到数据，用法如下</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 要粘贴的数据：</span><br><span class="line"></span><br><span class="line">document.body.onpaste = e =&gt; &#123;</span><br><span class="line">  let clipboardData = e.clipboardData || window.clipboardData; // 兼容处理</span><br><span class="line">  console.log(&#x27;要粘贴的数据&#x27;, clipboardData.getData(&#x27;text&#x27;));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>被复制&#x2F;剪切的数据</strong>：</p>
+<blockquote>
+<p>在复制和剪切中的数据，需要通过<code>window.getSelection(0).toString()</code>来访问:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.body.oncopy = e =&gt; &#123;</span><br><span class="line">  console.log(&#x27;被复制的数据:&#x27;, window.getSelection(0).toString());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>setData(): 修改剪切板中的数据</strong></p>
+<blockquote>
+<p>第一个参数也是<code>text</code>，第二个参数是要放在剪切板中的文本</p>
+</blockquote>
+<p><strong>clearData()</strong></p>
+<h2 id="二、应用"><a href="#二、应用" class="headerlink" title="二、应用"></a>二、应用</h2><h3 id="2-1-复制大段文本"><a href="#2-1-复制大段文本" class="headerlink" title="2.1 复制大段文本"></a>2.1 复制大段文本</h3><p><strong>实现类知乎&#x2F;掘金复制大段文本添加版权信息</strong></p>
+<blockquote>
+<p>实现很简单：取消默认复制之后，主要是在被复制的内容后面添加信息，然后根据 <code>clipboardData</code> 的 <code>setData()</code>方法将信息写入剪贴板</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 掘金这里不是全局监听，应该只是监听文章的dom范围内。</span><br><span class="line">document.body.oncopy = event =&gt; &#123;</span><br><span class="line">  event.preventDefault(); // 取消默认的复制事件</span><br><span class="line">  let textFont,</span><br><span class="line">    copyFont = window.getSelection(0).toString(); // 被复制的文字 等下插入</span><br><span class="line">  // 防知乎掘金 复制一两个字则不添加版权信息 超过一定长度的文字 就添加版权信息</span><br><span class="line">  if (copyFont.length &gt; 10) &#123;</span><br><span class="line">    textFont =</span><br><span class="line">      copyFont +</span><br><span class="line">      &#x27;\n&#x27; +</span><br><span class="line">      &#x27;作者：OBKoro1\n&#x27; +</span><br><span class="line">      &#x27;链接：https://juejin.im/user/58714f0e325b123db4a2eb95372/posts\n&#x27; +</span><br><span class="line">      &#x27;来源：掘金\n&#x27; +</span><br><span class="line">      &#x27;著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。&#x27;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    textFont = copyFont; // 没超过十个字 则采用被复制的内容。</span><br><span class="line">  &#125;</span><br><span class="line">  if (event.clipboardData) &#123;</span><br><span class="line">    return event.clipboardData.setData(&#x27;text&#x27;, textFont); // 将信息写入粘贴板</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // 兼容IE</span><br><span class="line">    return window.clipboardData.setData(&#x27;text&#x27;, textFont);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后 <code>command+c</code>、<code>command+v</code>，输出:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">你复制的内容</span><br><span class="line">作者：OBKoro1</span><br><span class="line">链接：https://juejin.im/user/58714f0eb123db4a2eb95372/posts</span><br><span class="line">来源：掘金</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-防复制功能"><a href="#2-2-防复制功能" class="headerlink" title="2.2 防复制功能"></a>2.2 防复制功能</h3><ul>
+<li>禁止复制+剪切</li>
+<li>禁止右键，右键某些选项:全选，复制，粘贴等。</li>
+<li>禁用文字选择，能选择却不能复制，体验很差。</li>
+<li><code>user-select</code> 用 <code>css</code> 禁止选择文本</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">// 禁止右键菜单</span><br><span class="line">document.body.oncontextmenu = e =&gt; &#123;</span><br><span class="line">    console.log(e, &#x27;右键&#x27;);</span><br><span class="line">    return false;</span><br><span class="line">    // e.preventDefault();</span><br><span class="line">&#125;;</span><br><span class="line">// 禁止文字选择。</span><br><span class="line">document.body.onselectstart = e =&gt; &#123;</span><br><span class="line">    console.log(e, &#x27;文字选择&#x27;);</span><br><span class="line">    return false;</span><br><span class="line">    // e.preventDefault();</span><br><span class="line">&#125;;</span><br><span class="line">// 禁止复制</span><br><span class="line">document.body.oncopy = e =&gt; &#123;</span><br><span class="line">    console.log(e, &#x27;copy&#x27;);</span><br><span class="line">    return false;</span><br><span class="line">    // e.preventDefault();</span><br><span class="line">&#125;</span><br><span class="line">// 禁止剪切</span><br><span class="line">document.body.oncut = e =&gt; &#123;</span><br><span class="line">    console.log(e, &#x27;cut&#x27;);</span><br><span class="line">    return false;</span><br><span class="line">    // e.preventDefault();</span><br><span class="line">&#125;;</span><br><span class="line">// 禁止粘贴</span><br><span class="line">document.body.onpaste = e =&gt; &#123;</span><br><span class="line">    console.log(e, &#x27;paste&#x27;);</span><br><span class="line">    return false;</span><br><span class="line">    // e.preventDefault();</span><br><span class="line">&#125;;</span><br><span class="line">/** css 禁止文本选择 这样不会触发js**/</span><br><span class="line">body &#123;</span><br><span class="line">    user-select: none;</span><br><span class="line">    -moz-user-select: none;</span><br><span class="line">    -webkit-user-select: none;</span><br><span class="line">    -ms-user-select: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用<code>e.preventDefault()</code>也可以禁用，但建议使用<code>return false</code>这样就不用去访问<code>e</code>和<code>e</code>的方法了。</li>
+<li>示例中<code>document.body</code>全局都禁用了，也可以对 <code>dom</code>(某些区域)进行禁用</li>
+</ul>
+<p><strong>破解防复制</strong></p>
+<p>上面的防复制方法通过<code>js+css</code>实现的，所以思路就是：禁用<code>js+取消user-select</code>样式。</p>
+<blockquote>
+<p><code>Chrome</code>浏览器的话：打开浏览器控制台，按<code>F1</code>进入<code>Setting</code>，勾选<code>Disable</code> <code>JavaScript</code>(禁止 <code>js</code>)。</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1480597-2f3188629fa5a86d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<blockquote>
+<p>此时如果还不能复制的话，就要去找<code>user-select</code>样式,取消这个样式就可以了</p>
+</blockquote>
+<h3 id="2-3-点击复制功能"><a href="#2-3-点击复制功能" class="headerlink" title="2.3 点击复制功能"></a>2.3 点击复制功能</h3><p><strong>不能使用 clipboardData</strong></p>
+<ul>
+<li>在 <code>IE</code> 中可以用<code>window.clipboardData.setData(&#39;text&#39;,&#39;内容&#39;)</code>实现</li>
+<li>上文提到过，在 <code>IE</code> 中<code>clipboardData</code>是<code>window</code>的属性</li>
+<li>而其他浏览器则是相应的<code>event</code>对象的属性，这实际上是一种安全措施，防止未经授权的访问,为了兼容其他浏览器，所以我们不能通过<code>clipboardData</code>来实现这种操作</li>
+</ul>
+<p><strong>具体做法</strong></p>
+<ul>
+<li>创建一个隐藏的<code>input</code>框</li>
+<li>点击的时候，将要复制的内容放进<code>input</code>框中</li>
+<li>选择文本内容<code>input.select()</code>。这里只能用<code>input</code>或者<code>textarea</code>才能选择文本</li>
+<li><code>document.execCommand(&quot;copy&quot;)</code>，执行浏览器的复制命令</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function copyText() &#123;</span><br><span class="line">  var text = document.getElementById(&#x27;text&#x27;).innerText; // 获取要复制的内容也可以传进来</span><br><span class="line">  var input = document.getElementById(&#x27;input&#x27;); // 获取隐藏input的dom</span><br><span class="line">  input.value = text; // 修改文本框的内容</span><br><span class="line">  input.select(); // 选中文本</span><br><span class="line">  document.execCommand(&#x27;copy&#x27;); // 执行浏览器复制命令</span><br><span class="line">  alert(&#x27;复制成功&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-第三方库clipboard"><a href="#2-4-第三方库clipboard" class="headerlink" title="2.4 第三方库clipboard"></a>2.4 第三方库clipboard</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/zenorocha/clipboard.js">https://github.com/zenorocha/clipboard.js</a></p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

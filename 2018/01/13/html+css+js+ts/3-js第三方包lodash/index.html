@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js-lodash.js - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="
+中文文档 https://www.lodashjs.com/docs/4.17.5.html
+
+_.chunk
+将数组进行切分
+
+
+这个函数把数组按照一定的长度分开，返回新的数组。（片段化数组）
+,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="js-lodash.js - lgz-BLOG"/>
+    <meta name="twitter:description" content="
+中文文档 https://www.lodashjs.com/docs/4.17.5.html
+
+_.chunk
+将数组进行切分
+
+
+这个函数把数组按照一定的长度分开，返回新的数组。（片段化数组）
+,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="js-lodash.js - lgz-BLOG"/>
+    <meta property="og:description" content="
+中文文档 https://www.lodashjs.com/docs/4.17.5.html
+
+_.chunk
+将数组进行切分
+
+
+这个函数把数组按照一定的长度分开，返回新的数组。（片段化数组）
+,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">js-lodash.js</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">js-lodash.js</h1>
+        <div class="stuff">
+            <span>一月 13, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <blockquote>
+<p>中文文档 <a target="_blank" rel="noopener" href="https://www.lodashjs.com/docs/4.17.5.html">https://www.lodashjs.com/docs/4.17.5.html</a></p>
+</blockquote>
+<h3 id="chunk"><a href="#chunk" class="headerlink" title="_.chunk"></a>_.chunk</h3><blockquote>
+<p>将数组进行切分</p>
+</blockquote>
+<ul>
+<li>这个函数把数组按照一定的长度分开，返回新的数组。（片段化数组）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,2,3,4,5,6,7,8,9];</span><br><span class="line">_.chunk(arr,2);</span><br><span class="line">// =&gt;[[1,2],[3,4],[5,6],[7,8],[9]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="compact"><a href="#compact" class="headerlink" title="compact"></a>compact</h3><blockquote>
+<p>去除假值。（将所有的空值，0，NaN过滤掉）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([&#x27;1&#x27;,&#x27;2&#x27;,&#x27; &#x27;,0])</span><br><span class="line">// =&gt; [&#x27;1&#x27;,&#x27;2&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h3><blockquote>
+<p>数组去重。（将数组中的对象去重，只能是数组去重，不能是对象去重。）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.uniq([1,1,3])</span><br><span class="line">// =&gt; [1,3]</span><br></pre></td></tr></table></figure>
+
+<h3 id="reject"><a href="#reject" class="headerlink" title="_.reject"></a>_.reject</h3><blockquote>
+<p>根据条件去除某个元素</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var foo = [</span><br><span class="line">    &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;,</span><br><span class="line">    &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">]</span><br><span class="line">var bar = _.reject(foo, [&#x27;id&#x27;, 0])</span><br><span class="line"></span><br><span class="line">//bar = [&#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="shuffle"><a href="#shuffle" class="headerlink" title="shuffle"></a>shuffle</h3><blockquote>
+<p>无序化</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.shuffle([1,2,3,4]);// 无序化</span><br></pre></td></tr></table></figure>
+
+<h3 id="pick"><a href="#pick" class="headerlink" title="_.pick"></a>_.pick</h3><blockquote>
+<p>根据key来筛选数组</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var foo = &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;</span><br><span class="line">var bar = _.pick(foo, [&#x27;name&#x27;, &#x27;age&#x27;])</span><br><span class="line">//bar = &#123;name: &quot;aaa&quot;, age: 33&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="keys"><a href="#keys" class="headerlink" title="_.keys"></a>_.keys</h3><blockquote>
+<p>返回object中的所有key</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var foo = &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;</span><br><span class="line">var bar = _.keys(foo)</span><br><span class="line">//bar = [&#x27;id&#x27;, &#x27;name&#x27;, &#x27;age&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="cloneDeep"><a href="#cloneDeep" class="headerlink" title="_.cloneDeep"></a>_.cloneDeep</h3><blockquote>
+<p>深度拷贝</p>
+</blockquote>
+<h3 id="forEach"><a href="#forEach" class="headerlink" title="_.forEach"></a>_.forEach</h3><p><strong>常规数组遍历</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">agent.forEach(function (n,key) &#123;</span><br><span class="line">    agent[key].agent_id = agent[key].agent_name;</span><br><span class="line">    return agent;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用lodash来遍历</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_.forEach(agent,function(n,key) &#123;</span><br><span class="line"></span><br><span class="line">    agent[key].agent_id= agent[key].agent_name</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这是一个常见的<code>forEach</code>的数组遍历，使用了<code>lodash</code>过后，<code>_.forEach()</code>这是一个值，而不是一个函数。就可以直接</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const arr = _.forEach();</span><br></pre></td></tr></table></figure>
+
+<p>这时候<code>arr</code>就是新的数组<code>agent</code></p>
+<h3 id="merge-参数合并"><a href="#merge-参数合并" class="headerlink" title="_.merge 参数合并"></a>_.merge 参数合并</h3><blockquote>
+<p>递归的将源对象和继承的可枚举字符串监控属性合并到目标对象中。源对象从左到右引用，后续来源将覆盖以前来源的属性分配。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var object = &#123;</span><br><span class="line">  &#x27;a&#x27;: [&#123; &#x27;b&#x27;: 2 &#125;, &#123; &#x27;d&#x27;: 4 &#125;]</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">var other = &#123;</span><br><span class="line">  &#x27;a&#x27;: [&#123; &#x27;c&#x27;: 3 &#125;, &#123; &#x27;e&#x27;: 5 &#125;]</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">_.merge(object, other);</span><br><span class="line">// =&gt; &#123; &#x27;a&#x27;: [&#123; &#x27;b&#x27;: 2, &#x27;c&#x27;: 3 &#125;, &#123; &#x27;d&#x27;: 4, &#x27;e&#x27;: 5 &#125;] &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在实际开发中，前端在接口的请求可以<code>merge</code>一下之前的<code>query</code>和现在改变的查询的值，再去请求后端接口的数据</p>
+</blockquote>
+<h3 id="random"><a href="#random" class="headerlink" title="_.random"></a>_.random</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(_.random(10, 20)); // 获取随机数</span><br><span class="line">_.random(15, 20, true); // 随机浮点</span><br><span class="line">_.sample([&quot;lisong&quot;, &quot;heyan&quot;], 1);// 随机获取数组中的某一项,attr2:随机获取的个数</span><br></pre></td></tr></table></figure>
+
+<h3 id="find查找数组"><a href="#find查找数组" class="headerlink" title="_.find查找数组"></a>_.find查找数组</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo = [</span><br><span class="line">    &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;,</span><br><span class="line">    &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">]</span><br><span class="line">var bar = _.find(foo, [&#x27;id&#x27;, 0])</span><br><span class="line">//bar = &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意一下如果没找到的话，会返回<code>undefined</code>，要处理一下</p>
+</blockquote>
+<h3 id="keyBy"><a href="#keyBy" class="headerlink" title="_.keyBy"></a>_.keyBy</h3><blockquote>
+<p>以某个属性为键，将数组转为对象</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var foo = var foo = [</span><br><span class="line">    &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;,</span><br><span class="line">    &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">]</span><br><span class="line">var bar = _.keyBy(foo, &#x27;name&#x27;)</span><br><span class="line">//bar = &#123;</span><br><span class="line">//    aaa: &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;,</span><br><span class="line">//    bbb: &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">//&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="filter"><a href="#filter" class="headerlink" title="_.filter"></a>_.filter</h3><blockquote>
+<p>根据条件过滤出符合条件的元素，返回新数组</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var foo = var foo = [</span><br><span class="line">    &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;,</span><br><span class="line">    &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">]</span><br><span class="line">var bar = _.filter(foo, [&#x27;name&#x27;, &quot;aaa&quot;])</span><br><span class="line">//bar = &#123;</span><br><span class="line">//    aaa: &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;</span><br><span class="line">//&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="map"><a href="#map" class="headerlink" title="_.map"></a>_.map</h3><blockquote>
+<p>从集合中挑出一个<code>key</code>，将其值作为数组返回</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo = var foo = [</span><br><span class="line">    &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;,</span><br><span class="line">    &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">]</span><br><span class="line">var bar = _.map(foo, &#x27;name&#x27;)</span><br><span class="line">//bar = [&quot;aaa&quot;, &quot;bbb&quot;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="max-x2F-min-x2F-sum"><a href="#max-x2F-min-x2F-sum" class="headerlink" title=".max&#x2F;.min&#x2F;_.sum"></a><em>.max&#x2F;</em>.min&#x2F;_.sum</h3><blockquote>
+<p>数组中最大值、最小值、数组求和</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var foo = [1, 2, 3, 4]</span><br><span class="line">var bar = _.max(foo)</span><br><span class="line">//bar = 4</span><br><span class="line">bar = _.min(foo)</span><br><span class="line">//bar = 1</span><br><span class="line">bar = _.sum(foo)</span><br><span class="line">//bar = 10</span><br></pre></td></tr></table></figure>
+
+<h3 id="pad-x2F-padStart-x2F-padEnd"><a href="#pad-x2F-padStart-x2F-padEnd" class="headerlink" title=".pad&#x2F;.padStart&#x2F;_.padEnd"></a><em>.pad&#x2F;</em>.padStart&#x2F;_.padEnd</h3><blockquote>
+<p>在两端、开头、末尾补齐字符</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var foo = &quot;helloworld&quot;</span><br><span class="line">var bar = _.pad(foo, 14, &#x27;-&#x27;)</span><br><span class="line">//bar = --helloworld--</span><br><span class="line">bar = _.padStart(foo, 14, &#x27;-&#x27;)</span><br><span class="line">//bar = ----helloworld</span><br><span class="line">bar = _.padEnd(foo, 14, &#x27;-&#x27;)</span><br><span class="line">//bar = helloworld----</span><br></pre></td></tr></table></figure>
+
+<h3 id="选出json数组中id最大的一项"><a href="#选出json数组中id最大的一项" class="headerlink" title="选出json数组中id最大的一项"></a>选出json数组中id最大的一项</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var foo = [</span><br><span class="line">    &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;,</span><br><span class="line">    &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">]</span><br><span class="line">var bar = _.find(foo, [&#x27;id&#x27;, _.max(_.map(foo, &#x27;id&#x27;))])</span><br><span class="line">// bar = &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">// ps:也可以用maxBy某个key来代替</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新json数组中某一项的值"><a href="#更新json数组中某一项的值" class="headerlink" title="更新json数组中某一项的值"></a>更新json数组中某一项的值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var foo = [</span><br><span class="line">    &#123;id: 0, name: &quot;aaa&quot;, age: 33&#125;,</span><br><span class="line">    &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">]</span><br><span class="line">let list = _.keyBy(foo, &#x27;id&#x27;)</span><br><span class="line">list[0].name = &quot;ccc&quot;</span><br><span class="line">var bar = _.map(list)</span><br><span class="line">// bar = [</span><br><span class="line">//    &#123;id: 0, name: &quot;ccc&quot;, age: 33&#125;,</span><br><span class="line">//    &#123;id: 1, name: &quot;bbb&quot;, age: 25&#125;</span><br><span class="line">//]</span><br></pre></td></tr></table></figure>
+
+<h3 id="扁平化数组-flatten"><a href="#扁平化数组-flatten" class="headerlink" title="扁平化数组 _.flatten"></a>扁平化数组 _.flatten</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,[3,4,[5],6]]</span><br><span class="line">var a8 = _.flatten(arr)  //[ 1, 2, 3, 4, [ 5 ], 6 ]</span><br><span class="line">var a9 = _.flattenDeep(arr)  //[ 1, 2, 3, 4, 5, 6 ]</span><br><span class="line">var a10 = _.flattenDepth(arr,2)  //[ 1, 2, 3, 4, 5, 6 ]</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr2 = [12,14,11,12,12,1,14,16,17,22,2,11,12]</span><br><span class="line">var a11 = Array.from(new Set(arr2))</span><br><span class="line">var a12 = [...new Set(arr2)]</span><br><span class="line">var a13 = _.uniq(arr2)  //[ 12, 14, 11, 1, 16, 17, 22, 2 ]</span><br><span class="line">var arrObj = [&#123; &#x27;x&#x27;: 1, &#x27;y&#x27;: 2 &#125;, &#123; &#x27;x&#x27;: 2, &#x27;y&#x27;: 1 &#125;,&#123; &#x27;x&#x27;: 2, &#x27;y&#x27;: 1 &#125;, &#123; &#x27;x&#x27;: 1, &#x27;y&#x27;: 2 &#125;];</span><br><span class="line">var a14 = _.uniqWith(arrObj, _.isEqual)  //[ &#123; x: 1, y: 2 &#125;, &#123; x: 2, y: 1 &#125; ]</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

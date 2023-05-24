@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>git pull 和 git fetch - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、是什么先回顾两个命令的定义
+
+git fetch 命令用于从另一个存储库下载对象和引用
+git pull 命令用于从另一个存储库或本地分支获取并集成(整合)
+
+再来看一次git的工作流程图，如下,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="git pull 和 git fetch - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、是什么先回顾两个命令的定义
+
+git fetch 命令用于从另一个存储库下载对象和引用
+git pull 命令用于从另一个存储库或本地分支获取并集成(整合)
+
+再来看一次git的工作流程图，如下,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="git pull 和 git fetch - lgz-BLOG"/>
+    <meta property="og:description" content="一、是什么先回顾两个命令的定义
+
+git fetch 命令用于从另一个存储库下载对象和引用
+git pull 命令用于从另一个存储库或本地分支获取并集成(整合)
+
+再来看一次git的工作流程图，如下,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">git pull 和 git fetch</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">git pull 和 git fetch</h1>
+        <div class="stuff">
+            <span>十一月 23, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、是什么"><a href="#一、是什么" class="headerlink" title="一、是什么"></a>一、是什么</h2><p>先回顾两个命令的定义</p>
+<ul>
+<li>git fetch 命令用于从另一个存储库下载对象和引用</li>
+<li>git pull 命令用于从另一个存储库或本地分支获取并集成(整合)</li>
+</ul>
+<p>再来看一次<code>git</code>的工作流程图，如下所示：</p>
+<p><img src="https://static.vue-js.com/d523ba60-fac2-11eb-991d-334fd31f0201.png" alt="img"></p>
+<p>可以看到，<code>git fetch</code>是将远程主机的最新内容拉到本地，用户在检查了以后决定是否合并到工作本机分支中</p>
+<p>而<code>git pull</code> 则是将远程主机的最新内容拉下来后直接合并，即：<code>git pull = git fetch + git merge</code>，这样可能会产生冲突，需要手动解决</p>
+<p>在我们本地的<code>git</code>文件中对应也存储了<code>git</code>本地仓库分支的<code>commit ID</code>和 跟踪的远程分支的<code>commit ID</code>，对应文件如下：</p>
+<ul>
+<li>.git&#x2F;refs&#x2F;head&#x2F;[本地分支]</li>
+<li>.git&#x2F;refs&#x2F;remotes&#x2F;[正在跟踪的分支]</li>
+</ul>
+<p>使用 <code>git fetch</code>更新代码，本地的库中<code>master</code>的<code>commitID</code>不变</p>
+<p>但是与<code>git</code>上面关联的那个<code>orign/master</code>的<code>commit ID</code>发生改变</p>
+<p>这时候我们本地相当于存储了两个代码的版本号，我们还要通过<code>merge</code>去合并这两个不同的代码版本</p>
+<p><img src="https://static.vue-js.com/fd23ff70-fb12-11eb-bc6f-3f06e1491664.png" alt="img"></p>
+<p>也就是<code>fetch</code>的时候本地的<code>master</code>没有变化，但是与远程仓关联的那个版本号被更新了，接下来就是在本地<code>merge</code>合并这两个版本号的代码</p>
+<p>相比之下，使用<code>git pull</code>就更加简单粗暴，会将本地的代码更新至远程仓库里面最新的代码版本，如下图：</p>
+<p><img src="https://static.vue-js.com/091b8140-fb13-11eb-bc6f-3f06e1491664.png" alt="img"></p>
+<h2 id="二、用法"><a href="#二、用法" class="headerlink" title="二、用法"></a>二、用法</h2><p>一般远端仓库里有新的内容更新，当我们需要把新内容下载的时候，就使用到<code>git pull</code>或者<code>git fetch</code>命令</p>
+<h3 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h3><p>用法如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>例如从远程的<code>origin</code>仓库的<code>master</code>分支下载代码到本地并新建一个<code>temp</code>分支</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin master:temp</span><br></pre></td></tr></table></figure>
+
+<p>如果上述没有冒号，则表示将远程<code>origin</code>仓库的<code>master</code>分支拉取下来到本地当前分支</p>
+<p>这里<code>git fetch</code>不会进行合并，执行后需要手动执行<code>git merge</code>合并，如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge temp</span><br></pre></td></tr></table></figure>
+
+<h3 id="pull"><a href="#pull" class="headerlink" title="pull"></a>pull</h3><p>两者的用法十分相似，<code>pull</code>用法如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>例如将远程主机<code>origin</code>的<code>master</code>分支拉取过来，与本地的<code>branchtest</code>分支合并，命令如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master:branchtest</span><br></pre></td></tr></table></figure>
+
+<p>同样如果上述没有冒号，则表示将远程<code>origin</code>仓库的<code>master</code>分支拉取下来与本地当前分支合并</p>
+<h2 id="三、区别"><a href="#三、区别" class="headerlink" title="三、区别"></a>三、区别</h2><p>相同点：</p>
+<ul>
+<li>在作用上他们的功能是大致相同的，都是起到了更新代码的作用</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>git pull是相当于从远程仓库获取最新版本，然后再与本地分支merge，即git pull &#x3D; git fetch + git merge</li>
+<li>相比起来，git fetch 更安全也更符合实际要求，在 merge 前，我们可以查看更新情况，根据实际情况再决定是否合并</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

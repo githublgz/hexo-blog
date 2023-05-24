@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>前端性能优化-02 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="什么是RAIL：缩写每一个字母表示一个性能指标
+Response：响应  对用户而言用户点击有没有即使访问
+Animation：动画 给用户的体验好。会不会出现卡顿
+Idie：空闲 有足够的空闲时间,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="前端性能优化-02 - lgz-BLOG"/>
+    <meta name="twitter:description" content="什么是RAIL：缩写每一个字母表示一个性能指标
+Response：响应  对用户而言用户点击有没有即使访问
+Animation：动画 给用户的体验好。会不会出现卡顿
+Idie：空闲 有足够的空闲时间,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="前端性能优化-02 - lgz-BLOG"/>
+    <meta property="og:description" content="什么是RAIL：缩写每一个字母表示一个性能指标
+Response：响应  对用户而言用户点击有没有即使访问
+Animation：动画 给用户的体验好。会不会出现卡顿
+Idie：空闲 有足够的空闲时间,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">前端性能优化-02</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">前端性能优化-02</h1>
+        <div class="stuff">
+            <span>三月 02, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="什么是RAIL："><a href="#什么是RAIL：" class="headerlink" title="什么是RAIL："></a>什么是RAIL：</h2><p>缩写每一个字母表示一个性能指标</p>
+<p>Response：响应  对用户而言用户点击有没有即使访问</p>
+<p>Animation：动画 给用户的体验好。会不会出现卡顿</p>
+<p>Idie：空闲 有足够的空闲时间才能够进行响应交互   不让他始终处于繁忙的时间，不然无法处理其他请求</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427100359004.png" alt="image-20220427100359004"></p>
+<p>Load：加载 资源网络加载的时间</p>
+<p><strong>RAIL目标</strong></p>
+<p><strong>评估指标</strong></p>
+<p>响应：处理时间应在50ms以内完成</p>
+<p>动画：没10ms产生一帧</p>
+<p>空闲：尽可能增加空闲时间</p>
+<p>加载：在5s内完成内容加载并可以交互</p>
+<p>逐步发现问题解决问题</p>
+<p>性能测量工具</p>
+<p>Chrome DevTools 开发者调试工具，性能评测</p>
+<p>Lighthouse 网站整体质量评估</p>
+<p>WebPageTest 多测量地点、全面行能报告（通过 它的问斩对自己的网站就行进行评估）</p>
+<h2 id="WenPageTest"><a href="#WenPageTest" class="headerlink" title="WenPageTest"></a><strong>WenPageTest</strong></h2><p>webpagetest.org</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427101136898.png" alt="image-20220427101136898"></p>
+<p>用户首次方位  第二次访问  （第一次对一些静态资源做缓存）</p>
+<p>录视频</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427101340209.png" alt="image-20220427101340209"></p>
+<p>测试结果：</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427101426225.png" alt="image-20220427101426225"></p>
+<p>第一次加载，首屏渲染，</p>
+<p>speed 速度指数等</p>
+<p>图片并行加载  时间有加载最长时间决定</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103510108.png" alt="image-20220427103510108"></p>
+<p>高亮（重定向了）  可以优化  直接去访问重定向后的位置</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103527654.png" alt="image-20220427103527654"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103716493.png" alt="image-20220427103716493"></p>
+<p>前提：docker</p>
+<p>docker pull webpagetest&#x2F;server</p>
+<p>docker pull webpagetest&#x2F;a</p>
+<p>docker run -d -p 4000:80 webpagetest&#x2F;server</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103841249.png" alt="image-20220427103841249"></p>
+<p>自定义镜像</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103951183.png" alt="image-20220427103951183"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103923723.png" alt="image-20220427103923723"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103940202.png" alt="image-20220427103940202"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104025309.png" alt="image-20220427104025309"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104016148.png" alt="image-20220427104016148"></p>
+<p>打包</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104104578.png" alt="image-20220427104104578"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104110269.png" alt="image-20220427104110269"></p>
+<p>这样就可以本地测试了。</p>
+<h2 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h2><p>npm install -g lighthouse</p>
+<p>lighthouse 测试网站地址</p>
+<p>自动打开一个浏览器窗口</p>
+<p>生成而是报告到本地</p>
+<p>打开即可查看</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104412546.png" alt="image-20220427104412546"></p>
+<p>第一个有意义的内容</p>
+<p>什么时候用户可以交互了</p>
+<p>用户访问过程截屏。</p>
+<p>Opportunity：告诉我们还可以做些什么做到了可以提升那些多长时间</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104938078.png" alt="image-20220427104938078"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427105002256.png" alt="image-20220427105002256"></p>
+<p>可以指定什么样的资源不进行加载。</p>
+<h2 id="Chrome-devtool调试"><a href="#Chrome-devtool调试" class="headerlink" title="Chrome devtool调试"></a>Chrome devtool调试</h2><p>Network：</p>
+<p>资源名称  大小   耗时</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427133838888.png" alt="image-20220427133838888"></p>
+<p>对请求资源进行压缩在返回前端</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134024090.png" alt="image-20220427134024090"></p>
+<p>实际大小 parse  1.4MB   网络传输（index）55kb</p>
+<p>Performance：</p>
+<p>开始出现性能分析：可以定位出导致长任务（耗费时间长）的方法。</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134236511.png" alt="image-20220427134236511"></p>
+<p>主线程任务。</p>
+<p>Disabel cache缓存。 Online：选择网络</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134610044.png" alt="image-20220427134610044"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134719082.png" alt="image-20220427134719082"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134737203.png" alt="image-20220427134737203"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

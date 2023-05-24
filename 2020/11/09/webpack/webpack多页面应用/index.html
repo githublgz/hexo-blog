@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>webpack多页面应用 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="entry配置在实际项目的开发中一个完整的系统不会将所有的功能都放在一个网页上，因为这样会导致网页的性能不佳，实际可以按照功能模块划分多个单页应用每个单页应用又生处一个html文件并且随着业务的发展,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="webpack多页面应用 - lgz-BLOG"/>
+    <meta name="twitter:description" content="entry配置在实际项目的开发中一个完整的系统不会将所有的功能都放在一个网页上，因为这样会导致网页的性能不佳，实际可以按照功能模块划分多个单页应用每个单页应用又生处一个html文件并且随着业务的发展,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="webpack多页面应用 - lgz-BLOG"/>
+    <meta property="og:description" content="entry配置在实际项目的开发中一个完整的系统不会将所有的功能都放在一个网页上，因为这样会导致网页的性能不佳，实际可以按照功能模块划分多个单页应用每个单页应用又生处一个html文件并且随着业务的发展,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">webpack多页面应用</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">webpack多页面应用</h1>
+        <div class="stuff">
+            <span>十一月 09, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p><strong>entry配置</strong><br>在实际项目的开发中一个完整的系统不会将所有的功能都放在一个网页上，因为这样会导致网页的性能不佳，实际可以按照功能模块划分多个单页应用每个单页应用又生处一个html文件并且随着业务的发展更多的单页应用可以被逐渐的加入到这个项目里。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">entry: [&#x27;./src/file_1.js&#x27;, &#x27;./src/file_2.js&#x27;，&#x27;node_modules里的模块 lodash&#x27;],</span><br><span class="line">entry:&#123;</span><br><span class="line">	main:[&#x27;./src/file_1.js&#x27;, &#x27;./src/file_2.js&#x27;],    //这里使用lodash  还会打包在这里打包一遍</span><br><span class="line">	lodash:&#x27;lodash&#x27;,</span><br><span class="line">&#125;</span><br><span class="line">entry:&#123;</span><br><span class="line">	main:&#123;</span><br><span class="line">	import :[&#x27;./src/file_1.js&#x27;, &#x27;./src/file_2.js&#x27;],  //这两个文件可能依赖于lodash，而lodash单独打包了，所以dependOn这个依赖可以把公共的lodash给抽离出来            lodash  就不会在打包一遍了</span><br><span class="line">	dependOn:&#x27;lodash&#x27;,           // 做依赖  这里的lodash  是下面的对应名  可以随意起</span><br><span class="line">	&#125;,    //这里使用lodash  还会打包在这里打包一遍</span><br><span class="line">	lodash:&#x27;lodash&#x27;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对象语法会比较繁琐。然而，这是应用程序中定义入口的最可扩展的方式。<br>描述入口的对象：<br>用于描述入口的对象。你可以使用如下属性：<br>dependOn : 当前入口所依赖的入口。它们必须在该入口被加载前被加载。<br>filename : 指定要输出的文件名称。<br>import : 启动时需加载的模块。<br>library : 指定 library 选项，为当前 entry 构建一个 library。<br>runtime : 运行时 chunk 的名字。如果设置了，就会创建一个新的运行时<br>chunk。在 webpack 5.43.0 之后可将其设为 false 以避免一个新的运行时<br>chunk。<br>publicPath : 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共<br>URL 地址。请查看 output.publicPath。<br>webpack.config.js<br>runtime 和 dependOn 不应在同一个入口上同时使用，所以如下配置无效，并且会<br>抛出错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line"> entry: &#123;</span><br><span class="line">  a2: &#x27;dependingfile.js&#x27;,</span><br><span class="line">  b2: &#123;</span><br><span class="line">   dependOn: &#x27;a2&#x27;,</span><br><span class="line">   import: &#x27;./src/app.js&#x27;,</span><br><span class="line"> &#125;,</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>webpack.config.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line"> entry: &#123;</span><br><span class="line">  a2: &#x27;./a&#x27;,</span><br><span class="line">  b2: &#123;</span><br><span class="line">   runtime: &#x27;x2&#x27;,</span><br><span class="line">   dependOn: &#x27;a2&#x27;,</span><br><span class="line">   import: &#x27;./b&#x27;,</span><br><span class="line"> &#125;,</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>确保 runtime 不能指向已存在的入口名称，例如下面配置会抛出一个错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line"> entry: &#123;</span><br><span class="line">  a1: &#x27;./a&#x27;,</span><br><span class="line">  b1: &#123;</span><br><span class="line">   runtime: &#x27;a1&#x27;,</span><br><span class="line">   import: &#x27;./b&#x27;,</span><br><span class="line"> &#125;,</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>另外 dependOn 不能是循环引用的，下面的例子也会出现错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line"> entry: &#123;</span><br><span class="line">  a3: &#123;</span><br><span class="line">   import: &#x27;./a&#x27;,</span><br><span class="line">   dependOn: &#x27;b3&#x27;,</span><br><span class="line"> &#125;,</span><br><span class="line">  b3: &#123;</span><br><span class="line">   import: &#x27;./b&#x27;,</span><br><span class="line">   dependOn: &#x27;a3&#x27;,</span><br><span class="line"> &#125;,</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置index.html模板</strong><br>要生成多个HTML文件，请在插件数组中多次声明插件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> entry: &#123;</span><br><span class="line"> 	main:&#123;</span><br><span class="line">		import :[],</span><br><span class="line">		dependOn:&#x27;lodash2&#x27;,</span><br><span class="line">		filename:&#x27;chanel1.[name].js&#x27;</span><br><span class="line">	&#125;,</span><br><span class="line">	lodash2:&#123;</span><br><span class="line">		import :&#x27;lodash&#x27;,</span><br><span class="line">		filename:&#x27;common/[name].js&#x27;</span><br><span class="line">	&#125;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> plugins: [</span><br><span class="line">  new HtmlWebpackPlugin(), // Generates default index.html</span><br><span class="line">  new HtmlWebpackPlugin(&#123;  // Also generate a test.html</span><br><span class="line">   title:   &#x27;ejs&#x27;,     //在页面可以使用ejs模板语法获取数据</span><br><span class="line">   filename: &#x27;chanel1/test.html&#x27;,                      //执行打包后的页面文件     输出的文件名</span><br><span class="line">   template: &#x27;src/assets/test.html&#x27;       //指定模板的路径</span><br><span class="line">   inject:&#x27;body/head&#x27;,                       // 定义当前所生成的script标签的位置</span><br><span class="line">   chunks:[&#x27;自定义那个入口  如：main.js&#x27;]，              //规定当前页面到底打包那些chunk   如何实现多个页面去载入不同的chunk   chunk就是我们在路口配置的项    每一项就是一个chunk  默认会把所有chunk都放进去</span><br><span class="line">   publicPash:&#x27;http://www.a.com/&#x27;        //包的前缀</span><br><span class="line"> &#125;)</span><br><span class="line"> ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;title&gt;&lt;%= htmlWebpackPlugin.options.title  %&gt;&lt;/title&gt;  options.就是我们在HtmlWebpackPlugin定制的选项</span><br><span class="line">index.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot;/&gt;</span><br><span class="line">  &lt;title&gt;&lt;%= htmlWebpackPlugin.options.title %&gt;&lt;/title&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>多页面应用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line"> entry: &#123;</span><br><span class="line">  pageOne: &#x27;./src/pageOne/index.js&#x27;,</span><br><span class="line">  pageTwo: &#x27;./src/pageTwo/index.js&#x27;,</span><br><span class="line">  pageThree: &#x27;./src/pageThree/index.js&#x27;,</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是什么？ 我们告诉 webpack 需要三个独立分离的依赖图（如上面的示例）</p>
+<p>为什么？ 在多页面应用程序中，server 会拉取一个新的 HTML 文档给你的客户端。<br>页面重新加载此新文档，并且资源被重新下载。然而，这给了我们特殊的机会去做很<br>多事，例如使用 optimization.splitChunks 为页面间共享的应用程序代码创建<br>bundle。由于入口起点数量的增多，多页应用能够复用多个入口起点之间的大量代<br>码&#x2F;模块，从而可以极大地从这些技术中受益。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>vue-v-if与v-for为什么不建议一起用 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、作用v-if 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 true值的时候被渲染
+v-for 指令基于一个数组来渲染一个列表。v-for 指令需要使用 item in item,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="vue-v-if与v-for为什么不建议一起用 - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、作用v-if 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 true值的时候被渲染
+v-for 指令基于一个数组来渲染一个列表。v-for 指令需要使用 item in item,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="vue-v-if与v-for为什么不建议一起用 - lgz-BLOG"/>
+    <meta property="og:description" content="一、作用v-if 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 true值的时候被渲染
+v-for 指令基于一个数组来渲染一个列表。v-for 指令需要使用 item in item,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">vue-v-if与v-for为什么不建议一起用</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">vue-v-if与v-for为什么不建议一起用</h1>
+        <div class="stuff">
+            <span>七月 11, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、作用"><a href="#一、作用" class="headerlink" title="一、作用"></a>一、作用</h2><p><code>v-if</code> 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 <code>true</code>值的时候被渲染</p>
+<p><code>v-for</code> 指令基于一个数组来渲染一个列表。<code>v-for</code> 指令需要使用 <code>item in items</code> 形式的特殊语法，其中 <code>items</code> 是源数据数组或者对象，而 <code>item</code> 则是被迭代的数组元素的别名</p>
+<p>在 <code>v-for</code> 的时候，建议设置<code>key</code>值，并且保证每个<code>key</code>值是独一无二的，这便于<code>diff</code>算法进行优化</p>
+<p>两者在用法上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Modal</span> v-<span class="keyword">if</span>=<span class="string">&quot;isShow&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;item in items&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.id&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;&#123; item.label &#125;&#125;</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="二、优先级"><a href="#二、优先级" class="headerlink" title="二、优先级"></a>二、优先级</h2><p><code>v-if</code>与<code>v-for</code>都是<code>vue</code>模板系统中的指令</p>
+<p>在<code>vue</code>模板编译的时候，会将指令系统转化成可执行的<code>render</code>函数</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>编写一个<code>p</code>标签，同时使用<code>v-if</code>与 <code>v-for</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">&quot;isShow&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;item in items&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123; item.title &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>创建<code>vue</code>实例，存放<code>isShow</code>与<code>items</code>数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&quot;#app&quot;</span>,</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">items</span>: [</span><br><span class="line">        &#123; <span class="attr">title</span>: <span class="string">&quot;foo&quot;</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">title</span>: <span class="string">&quot;baz&quot;</span> &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="title function_">isShow</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span> &gt; <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>模板指令的代码都会生成在<code>render</code>函数中，通过<code>app.$options.render</code>就能得到渲染函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ƒ <span class="title function_">anonymous</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">with</span> (<span class="variable language_">this</span>) &#123; <span class="keyword">return</span> </span><br><span class="line">    <span class="title function_">_c</span>(<span class="string">&#x27;div&#x27;</span>, &#123; <span class="attr">attrs</span>: &#123; <span class="string">&quot;id&quot;</span>: <span class="string">&quot;app&quot;</span> &#125; &#125;, </span><br><span class="line">    <span class="title function_">_l</span>((items), <span class="keyword">function</span> (<span class="params">item</span>) </span><br><span class="line">    &#123; <span class="keyword">return</span> (isShow) ? <span class="title function_">_c</span>(<span class="string">&#x27;p&#x27;</span>, [<span class="title function_">_v</span>(<span class="string">&quot;\n&quot;</span> + <span class="title function_">_s</span>(item.<span class="property">title</span>) + <span class="string">&quot;\n&quot;</span>)]) : <span class="title function_">_e</span>() &#125;), <span class="number">0</span>) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>_l</code>是<code>vue</code>的列表渲染函数，函数内部都会进行一次<code>if</code>判断</p>
+<p>初步得到结论：<code>v-for</code>优先级是比<code>v-if</code>高</p>
+<p>再将<code>v-for</code>与<code>v-if</code>置于不同标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">&quot;isShow&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">&quot;item in items&quot;</span>&gt;</span>&#123;&#123;item.title&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再输出下<code>render</code>函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ƒ <span class="title function_">anonymous</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">with</span>(<span class="params"><span class="variable language_">this</span></span>)&#123;<span class="keyword">return</span> </span><br><span class="line">    <span class="title function_">_c</span>(<span class="string">&#x27;div&#x27;</span>,&#123;<span class="attr">attrs</span>:&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;app&quot;</span>&#125;&#125;,</span><br><span class="line">    [(isShow)?[<span class="title function_">_v</span>(<span class="string">&quot;\n&quot;</span>),</span><br><span class="line">    <span class="title function_">_l</span>((items),<span class="keyword">function</span>(<span class="params">item</span>)&#123;<span class="keyword">return</span> <span class="title function_">_c</span>(<span class="string">&#x27;p&#x27;</span>,[<span class="title function_">_v</span>(<span class="title function_">_s</span>(item.<span class="property">title</span>))])&#125;)]:<span class="title function_">_e</span>()],<span class="number">2</span>)&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候我们可以看到，<code>v-for</code>与<code>v-if</code>作用在不同标签时候，是先进行判断，再进行列表的渲染</p>
+<p>我们再在查看下<code>vue</code>源码</p>
+<p>源码位置：<code>\vue-dev\src\compiler\codegen\index.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">genElement</span> (<span class="attr">el</span>: <span class="title class_">ASTElement</span>, <span class="attr">state</span>: <span class="title class_">CodegenState</span>): string &#123;</span><br><span class="line">  <span class="keyword">if</span> (el.<span class="property">parent</span>) &#123;</span><br><span class="line">    el.<span class="property">pre</span> = el.<span class="property">pre</span> || el.<span class="property">parent</span>.<span class="property">pre</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (el.<span class="property">staticRoot</span> &amp;&amp; !el.<span class="property">staticProcessed</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">genStatic</span>(el, state)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.<span class="property">once</span> &amp;&amp; !el.<span class="property">onceProcessed</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">genOnce</span>(el, state)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.<span class="property">for</span> &amp;&amp; !el.<span class="property">forProcessed</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">genFor</span>(el, state)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.<span class="property">if</span> &amp;&amp; !el.<span class="property">ifProcessed</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">genIf</span>(el, state)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.<span class="property">tag</span> === <span class="string">&#x27;template&#x27;</span> &amp;&amp; !el.<span class="property">slotTarget</span> &amp;&amp; !state.<span class="property">pre</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">genChildren</span>(el, state) || <span class="string">&#x27;void 0&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.<span class="property">tag</span> === <span class="string">&#x27;slot&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">genSlot</span>(el, state)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// component or element</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在进行<code>if</code>判断的时候，<code>v-for</code>是比<code>v-if</code>先进行判断</p>
+<p>最终结论：<code>v-for</code>优先级比<code>v-if</code>高</p>
+<h2 id="三、注意事项"><a href="#三、注意事项" class="headerlink" title="三、注意事项"></a>三、注意事项</h2><ol>
+<li>永远不要把 <code>v-if</code> 和 <code>v-for</code> 同时用在同一个元素上，带来性能方面的浪费（每次渲染都会先循环再进行条件判断）</li>
+<li>如果避免出现这种情况，则在外层嵌套<code>template</code>（页面渲染不生成<code>dom</code>节点），在这一层进行v-if判断，然后在内部进行v-for循环</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">&quot;isShow&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">&quot;item in items&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>如果条件出现在循环内部，可通过计算属性<code>computed</code>提前过滤掉那些不需要显示的项</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="attr">items</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">list</span>.<span class="title function_">filter</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> item.<span class="property">isShow</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

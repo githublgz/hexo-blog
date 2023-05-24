@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>webpack 热加载原理 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、是什么HMR全称 Hot Module Replacement，可以理解为模块热替换，指在应用程序运行过程中，替换、添加、删除模块，而无需重新刷新整个应用
+例如，我们在应用运行过程中修改了某个模,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="webpack 热加载原理 - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、是什么HMR全称 Hot Module Replacement，可以理解为模块热替换，指在应用程序运行过程中，替换、添加、删除模块，而无需重新刷新整个应用
+例如，我们在应用运行过程中修改了某个模,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="webpack 热加载原理 - lgz-BLOG"/>
+    <meta property="og:description" content="一、是什么HMR全称 Hot Module Replacement，可以理解为模块热替换，指在应用程序运行过程中，替换、添加、删除模块，而无需重新刷新整个应用
+例如，我们在应用运行过程中修改了某个模,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">webpack 热加载原理</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">webpack 热加载原理</h1>
+        <div class="stuff">
+            <span>九月 30, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="一、是什么"><a href="#一、是什么" class="headerlink" title="一、是什么"></a>一、是什么</h3><p><code>HMR</code>全称 <code>Hot Module Replacement</code>，可以理解为模块热替换，指在应用程序运行过程中，替换、添加、删除模块，而无需重新刷新整个应用</p>
+<p>例如，我们在应用运行过程中修改了某个模块，通过自动刷新会导致整个应用的整体刷新，那页面中的状态信息都会丢失</p>
+<p>如果使用的是 <code>HMR</code>，就可以实现只将修改的模块实时替换至应用中，不必完全刷新整个应用</p>
+<p>在<code>webpack</code>中配置开启热模块也非常的简单，如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">devServer</span>: &#123;</span><br><span class="line">    <span class="comment">// 开启 HMR 特性</span></span><br><span class="line">    <span class="attr">hot</span>: <span class="literal">true</span></span><br><span class="line">    <span class="comment">// hotOnly: true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过上述这种配置，如果我们修改并保存<code>css</code>文件，确实能够以不刷新的形式更新到页面中</p>
+<p>但是，当我们修改并保存<code>js</code>文件之后，页面依旧自动刷新了，这里并没有触发热模块</p>
+<p>所以，<code>HMR</code>并不像 <code>Webpack</code> 的其他特性一样可以开箱即用，需要有一些额外的操作</p>
+<p>我们需要去指定哪些模块发生更新时进行<code>HRM</code>，如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable language_">module</span>.<span class="property">hot</span>)&#123;</span><br><span class="line">    <span class="variable language_">module</span>.<span class="property">hot</span>.<span class="title function_">accept</span>(<span class="string">&#x27;./util.js&#x27;</span>,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;util.js更新了&quot;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、实现原理"><a href="#二、实现原理" class="headerlink" title="二、实现原理"></a>二、实现原理</h2><p>首先来看看一张图，如下：</p>
+<p><img src="https://static.vue-js.com/adc05780-acd4-11eb-ab90-d9ae814b240d.png" alt="img"></p>
+<ul>
+<li>Webpack Compile：将 JS 源代码编译成 bundle.js</li>
+<li>HMR Server：用来将热更新的文件输出给 HMR Runtime</li>
+<li>Bundle Server：静态资源文件服务器，提供文件访问路径</li>
+<li>HMR Runtime：socket服务器，会被注入到浏览器，更新文件的变化</li>
+<li>bundle.js：构建输出的文件</li>
+<li>在HMR Runtime 和 HMR Server之间建立 websocket，即图上4号线，用于实时更新文件变化</li>
+</ul>
+<p>上面图中，可以分成两个阶段：</p>
+<ul>
+<li>启动阶段为上图 1 - 2 - A - B</li>
+</ul>
+<p>在编写未经过<code>webpack</code>打包的源代码后，<code>Webpack Compile</code> 将源代码和 <code>HMR Runtime</code> 一起编译成 <code>bundle</code>文件，传输给<code>Bundle Server</code> 静态资源服务器</p>
+<ul>
+<li>更新阶段为上图 1 - 2 - 3 - 4</li>
+</ul>
+<p>当某一个文件或者模块发生变化时，<code>webpack</code>监听到文件变化对文件重新编译打包，编译生成唯一的<code>hash</code>值，这个<code>hash</code>值用来作为下一次热更新的标识</p>
+<p>根据变化的内容生成两个补丁文件：<code>manifest</code>（包含了 <code>hash</code> 和 <code>chundId</code>，用来说明变化的内容）和<code>chunk.js</code> 模块</p>
+<p>由于<code>socket</code>服务器在<code>HMR Runtime</code> 和 <code>HMR Server</code>之间建立 <code>websocket</code>链接，当文件发生改动的时候，服务端会向浏览器推送一条消息，消息包含文件改动后生成的<code>hash</code>值，如下图的<code>h</code>属性，作为下一次热更细的标识</p>
+<p><img src="https://static.vue-js.com/05a0edf0-ad4a-11eb-85f6-6fac77c0c9b3.png" alt="img"></p>
+<p>在浏览器接受到这条消息之前，浏览器已经在上一次<code>socket</code> 消息中已经记住了此时的<code>hash</code> 标识，这时候我们会创建一个 <code>ajax</code> 去服务端请求获取到变化内容的 <code>manifest</code> 文件</p>
+<p><code>mainfest</code>文件包含重新<code>build</code>生成的<code>hash</code>值，以及变化的模块，对应上图的<code>c</code>属性</p>
+<p>浏览器根据 <code>manifest</code> 文件获取模块变化的内容，从而触发<code>render</code>流程，实现局部模块更新</p>
+<p><img src="https://static.vue-js.com/0e7b7850-ad4a-11eb-ab90-d9ae814b240d.png" alt="img"></p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>关于<code>webpack</code>热模块更新的总结如下：</p>
+<ul>
+<li>通过<code>webpack-dev-server</code>创建两个服务器：提供静态资源的服务（express）和Socket服务</li>
+<li>express server 负责直接提供静态资源的服务（打包后的资源直接被浏览器请求和解析）</li>
+<li>socket server 是一个 websocket 的长连接，双方可以通信</li>
+<li>当 socket server 监听到对应的模块发生变化时，会生成两个文件.json（manifest文件）和.js文件（update chunk）</li>
+<li>通过长连接，socket server 可以直接将这两个文件主动发送给客户端（浏览器）</li>
+<li>浏览器拿到两个新的文件后，通过HMR runtime机制，加载这两个文件，并且针对修改的模块进行更新</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

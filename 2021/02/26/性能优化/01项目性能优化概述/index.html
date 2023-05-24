@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>前端性能优化-01 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="平凡程序员和大牛程序员、架构师的分水岭
+怎样做出高性能的工程，达到大厂产品水平
+只是储配，动手实战
+
+优化标准“
+
+学习体系
+
+
+一、为什么要进行性能优化
+性能-web网站和应用的支柱
+网站性能对用,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="前端性能优化-01 - lgz-BLOG"/>
+    <meta name="twitter:description" content="平凡程序员和大牛程序员、架构师的分水岭
+怎样做出高性能的工程，达到大厂产品水平
+只是储配，动手实战
+
+优化标准“
+
+学习体系
+
+
+一、为什么要进行性能优化
+性能-web网站和应用的支柱
+网站性能对用,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="前端性能优化-01 - lgz-BLOG"/>
+    <meta property="og:description" content="平凡程序员和大牛程序员、架构师的分水岭
+怎样做出高性能的工程，达到大厂产品水平
+只是储配，动手实战
+
+优化标准“
+
+学习体系
+
+
+一、为什么要进行性能优化
+性能-web网站和应用的支柱
+网站性能对用,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">前端性能优化-01</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">前端性能优化-01</h1>
+        <div class="stuff">
+            <span>二月 26, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p><strong>平凡程序员和大牛程序员、架构师的分水岭</strong></p>
+<p><strong>怎样做出高性能的工程，达到大厂产品水平</strong></p>
+<p><strong>只是储配，动手实战</strong></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427093826921.png" alt="image-20220427093826921"></p>
+<p><strong>优化标准“</strong></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427093854500.png" alt="image-20220427093854500"></p>
+<p><strong>学习体系</strong></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427093906855.png" alt="image-20220427093906855"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427094119486.png" alt="image-20220427094119486"></p>
+<p>一、为什么要进行性能优化</p>
+<p>性能-web网站和应用的支柱</p>
+<p>网站性能对用户很重要</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427094359679.png" alt="image-20220427094359679"></p>
+<p><strong>寻找性能瓶颈</strong></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427094506838.png" alt="image-20220427094506838"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427094612815.png" alt="image-20220427094612815"></p>
+<p><strong>性能指标和性能优化</strong></p>
+<p>性能指标：</p>
+<p>Network  (页面清空缓存 ，重新加载，查看)</p>
+<p>请求数量  资源量   Dom加载时间   混合资源加载时间</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427094837633.png" alt="image-20220427094837633"></p>
+<p>瀑布图：</p>
+<p>请求前资源排队，dns解析，连接，SSL协商</p>
+<p>发送：TTFB（用户体验和他有大多数关系）   下载（资源大小）  资源进行并行加载（不阻塞）</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427094932008.png" alt="image-20220427094932008"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427095003259.png" alt="image-20220427095003259"></p>
+<p>右键下载查看  进行性能分析</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427095231244.png" alt="image-20220427095231244"></p>
+<p>性能测量工具：</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427095256620.png" alt="image-20220427095256620"></p>
+<p>first C …：页面出现数据的时间</p>
+<p>Speed Index：速度指数（标准为4s）</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427095310577.png"></p>
+<p>交互性：</p>
+<p>画面流畅（帧数问题）</p>
+<p>查看查看帧数变化工具：最后一项</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427095707388.png" alt="image-20220427095707388"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427095839003.png" alt="image-20220427095839003"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427095911447.png" alt="image-20220427095911447"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427095937536.png" alt="image-20220427095937536"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

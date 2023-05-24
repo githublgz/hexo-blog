@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>es6 var、let、const - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、var在ES5中，顶层对象的属性和全局变量是等价的，用var声明的变量既是全局变量，也是顶层变量
+注意：顶层对象，在浏览器环境指的是window对象，在 Node 指的是global对象
+12v,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="es6 var、let、const - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、var在ES5中，顶层对象的属性和全局变量是等价的，用var声明的变量既是全局变量，也是顶层变量
+注意：顶层对象，在浏览器环境指的是window对象，在 Node 指的是global对象
+12v,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="es6 var、let、const - lgz-BLOG"/>
+    <meta property="og:description" content="一、var在ES5中，顶层对象的属性和全局变量是等价的，用var声明的变量既是全局变量，也是顶层变量
+注意：顶层对象，在浏览器环境指的是window对象，在 Node 指的是global对象
+12v,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">es6 var、let、const</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">es6 var、let、const</h1>
+        <div class="stuff">
+            <span>四月 15, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/es6/" rel="tag">es6</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、var"><a href="#一、var" class="headerlink" title="一、var"></a>一、var</h2><p>在ES5中，顶层对象的属性和全局变量是等价的，用<code>var</code>声明的变量既是全局变量，也是顶层变量</p>
+<p>注意：顶层对象，在浏览器环境指的是<code>window</code>对象，在 <code>Node</code> 指的是<code>global</code>对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">a</span>) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>var</code>声明的变量存在变量提升的情况</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<p>在编译阶段，编译器会将其变成以下执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">a = <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>var</code>，我们能够对一个变量进行多次声明，后面声明的变量会覆盖前面的变量声明</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">20</span> </span><br><span class="line"><span class="keyword">var</span> a = <span class="number">30</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 30</span></span><br></pre></td></tr></table></figure>
+
+<p>在函数中使用使用<code>var</code>声明变量时候，该变量是局部的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">20</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">change</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">30</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">change</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 20 </span></span><br></pre></td></tr></table></figure>
+
+<p>而如果在函数内不使用<code>var</code>，该变量是全局的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">20</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">change</span>(<span class="params"></span>)&#123;</span><br><span class="line">   a = <span class="number">30</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">change</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 30 </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="二、let"><a href="#二、let" class="headerlink" title="二、let"></a>二、let</h2><p><code>let</code>是<code>ES6</code>新增的命令，用来声明变量</p>
+<p>用法类似于<code>var</code>，但是所声明的变量，只在<code>let</code>命令所在的代码块内有效</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// ReferenceError: a is not defined.</span></span><br></pre></td></tr></table></figure>
+
+<p>不存在变量提升</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 报错ReferenceError</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>这表示在声明它之前，变量<code>a</code>是不存在的，这时如果用到它，就会抛出一个错误</p>
+<p>只要块级作用域内存在<code>let</code>命令，这个区域就不再受外部影响</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    a = <span class="string">&#x27;abc&#x27;</span> <span class="comment">// ReferenceError</span></span><br><span class="line">    <span class="keyword">let</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>let</code>声明变量前，该变量都不可用，也就是大家常说的“暂时性死区”</p>
+<p>最后，<code>let</code>不允许在相同作用域中重复声明</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">20</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">30</span></span><br><span class="line"><span class="comment">// Uncaught SyntaxError: Identifier &#x27;a&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<p>注意的是相同作用域，下面这种情况是不会报错的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">20</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此，我们不能在函数内部重新声明参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">func</span>(<span class="params">arg</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> arg;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">func</span>()</span><br><span class="line"><span class="comment">// Uncaught SyntaxError: Identifier &#x27;arg&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、const"><a href="#三、const" class="headerlink" title="三、const"></a>三、const</h2><p><code>const</code>声明一个只读的常量，一旦声明，常量的值就不能改变</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line">a = <span class="number">3</span></span><br><span class="line"><span class="comment">// TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<p>这意味着，<code>const</code>一旦声明变量，就必须立即初始化，不能留到以后赋值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a;</span><br><span class="line"><span class="comment">// SyntaxError: Missing initializer in const declaration</span></span><br></pre></td></tr></table></figure>
+
+<p>如果之前用<code>var</code>或<code>let</code>声明过变量，再用<code>const</code>声明同样会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">20</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">20</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">30</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="number">30</span></span><br><span class="line"><span class="comment">// 都会报错</span></span><br></pre></td></tr></table></figure>
+
+<p><code>const</code>实际上保证的并不是变量的值不得改动，而是变量指向的那个内存地址所保存的数据不得改动</p>
+<p>对于简单类型的数据，值就保存在变量指向的那个内存地址，因此等同于常量</p>
+<p>对于复杂类型的数据，变量指向的内存地址，保存的只是一个指向实际数据的指针，<code>const</code>只能保证这个指针是固定的，并不能确保改变量的结构不变</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为 foo 添加一个属性，可以成功</span></span><br><span class="line">foo.<span class="property">prop</span> = <span class="number">123</span>;</span><br><span class="line">foo.<span class="property">prop</span> <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 foo 指向另一个对象，就会报错</span></span><br><span class="line">foo = &#123;&#125;; <span class="comment">// TypeError: &quot;foo&quot; is read-only</span></span><br></pre></td></tr></table></figure>
+
+<p>其它情况，<code>const</code>与<code>let</code>一致</p>
+<h2 id="四、区别"><a href="#四、区别" class="headerlink" title="四、区别"></a>四、区别</h2><p><code>var</code>、<code>let</code>、<code>const</code>三者区别可以围绕下面五点展开：</p>
+<ul>
+<li>变量提升</li>
+<li>暂时性死区</li>
+<li>块级作用域</li>
+<li>重复声明</li>
+<li>修改声明的变量</li>
+<li>使用</li>
+</ul>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var`声明的变量存在变量提升，即变量可以在声明之前调用，值为`undefined</span><br></pre></td></tr></table></figure>
+
+<p><code>let</code>和<code>const</code>不存在变量提升，即它们所声明的变量一定要在声明后使用，否则报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)  <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// let </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b)  <span class="comment">// Cannot access &#x27;b&#x27; before initialization</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c)  <span class="comment">// Cannot access &#x27;c&#x27; before initialization</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h3><p><code>var</code>不存在暂时性死区</p>
+<p><code>let</code>和<code>const</code>存在暂时性死区，只有等到声明变量的那一行代码出现，才可以获取和使用该变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)  <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// let</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b)  <span class="comment">// Cannot access &#x27;b&#x27; before initialization</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c)  <span class="comment">// Cannot access &#x27;c&#x27; before initialization</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p><code>var</code>不存在块级作用域</p>
+<p><code>let</code>和<code>const</code>存在块级作用域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)  <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// let</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b)  <span class="comment">// Uncaught ReferenceError: b is not defined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> c = <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c)  <span class="comment">// Uncaught ReferenceError: c is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重复声明"><a href="#重复声明" class="headerlink" title="重复声明"></a>重复声明</h3><p><code>var</code>允许重复声明变量</p>
+<p><code>let</code>和<code>const</code>在同一作用域不允许重复声明变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">20</span> <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// let</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">20</span> <span class="comment">// Identifier &#x27;b&#x27; has already been declared</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">10</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">20</span> <span class="comment">// Identifier &#x27;c&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修改声明的变量"><a href="#修改声明的变量" class="headerlink" title="修改声明的变量"></a>修改声明的变量</h3><p><code>var</code>和<code>let</code>可以</p>
+<p><code>const</code>声明一个只读的常量。一旦声明，常量的值就不能改变</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line">a = <span class="number">20</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)  <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//let</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span></span><br><span class="line">b = <span class="number">20</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b)  <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">10</span></span><br><span class="line">c = <span class="number">20</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c) <span class="comment">// Uncaught TypeError: Assignment to constant variable</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>能用<code>const</code>的情况尽量使用<code>const</code>，其他情况下大多数使用<code>let</code>，避免使用<code>var</code></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js深浅拷贝 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、前言
+在js中，变量的类型可以大致分成两种：基本数据类型和引用数据类型，其中基本数据类型指的是简单的数据段，包括：
+
+
+undefined
+Null
+Boolean
+Number
+String(,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="js深浅拷贝 - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、前言
+在js中，变量的类型可以大致分成两种：基本数据类型和引用数据类型，其中基本数据类型指的是简单的数据段，包括：
+
+
+undefined
+Null
+Boolean
+Number
+String(,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="js深浅拷贝 - lgz-BLOG"/>
+    <meta property="og:description" content="一、前言
+在js中，变量的类型可以大致分成两种：基本数据类型和引用数据类型，其中基本数据类型指的是简单的数据段，包括：
+
+
+undefined
+Null
+Boolean
+Number
+String(,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">js深浅拷贝</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">js深浅拷贝</h1>
+        <div class="stuff">
+            <span>二月 12, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><blockquote>
+<p>在<code>js</code>中，变量的类型可以大致分成两种：基本数据类型和引用数据类型，其中基本数据类型指的是简单的数据段，包括：</p>
+</blockquote>
+<ul>
+<li><code>undefined</code></li>
+<li><code>Null</code></li>
+<li><code>Boolean</code></li>
+<li><code>Number</code></li>
+<li><code>String</code>(字符串在一些其他语言中是被当做对象使用的，属于引用类型，但在<code>js</code>里是基本类型)</li>
+</ul>
+<blockquote>
+<p>而引用类型的值指的是可能包含多个值的对象。本质上，是因为基本数据类型保存在栈内存,而引用类型保存在堆内存中。为什么要分两种保存方式呢？ 根本原因在于保存在栈内存的必须是大小固定的数据，引用类型的大小不固定，只能保存在堆内存中，但是我们可以把它的地址写在占内存中以供我们访问</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;//定义了一个number类型</span><br><span class="line">var obj1 = &#123;//定义了一个objr类型</span><br><span class="line">    name:&#x27;obj&#x27;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在执行这段代码后，内存空间里是这样的</p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/314.png" alt="img"></p>
+<blockquote>
+<p>因为这种保存方式的存在，所以我们在操作变量的时候，如果是基本数据类型，则按值访问，操作的就是变量保存的值；如果是引用类型的值，我们只是通过保存在变量中的引用类型的地址类操作实际对象。从而也引出了所谓的深浅复制问题</p>
+</blockquote>
+<h2 id="二、浅拷贝"><a href="#二、浅拷贝" class="headerlink" title="二、浅拷贝"></a>二、浅拷贝</h2><p><strong>方法一</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 假设有两个对象</span><br><span class="line"></span><br><span class="line">var objA = &#123;</span><br><span class="line">  a: &#x27;aa&#x27;,</span><br><span class="line">  b: &#x27;bb&#x27;</span><br><span class="line">&#125;;</span><br><span class="line">var objB = &#123;&#125;;</span><br><span class="line">// 现在想把对象A的值复制给B，由于对象A的两个值都是原始类型，用浅复制即可</span><br><span class="line"></span><br><span class="line">function copy(sub, sup) &#123;</span><br><span class="line">  for (var key in sup) &#123;</span><br><span class="line">    sub[key] = sup[key];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">copy(objB, objA);</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.assign() (兼容性不好)</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法三</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.clone()</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法四</strong></p>
+<blockquote>
+<p>数组中<code>concat</code>和<code>slice</code>方法</p>
+</blockquote>
+<p><strong>方法五</strong></p>
+<blockquote>
+<p>ES6展开运算</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [&#123;name:&#x27;poetries&#x27;,age:22&#125;]</span><br><span class="line"></span><br><span class="line">var target = [...arr]</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、深拷贝"><a href="#三、深拷贝" class="headerlink" title="三、深拷贝"></a>三、深拷贝</h2><blockquote>
+<p>简单来说深复制就是当遇到值是对象类型的时候就再运行一遍复制</p>
+</blockquote>
+<p><strong>方法一 JSON.parse(JSON.stringify(obj))</strong></p>
+<blockquote>
+<p>简单粗暴又有点<code>dirty</code>，但是能满足日常需求，只能处理<code>json</code>能理解的数据格式，当然不包括函数了，性能也没有特别好</p>
+</blockquote>
+<p><strong>方法二 lodash —— _.cloneDeep()</strong></p>
+<blockquote>
+<p>很好地兼容了ES6的新引用类型，而且处理了环型对象的情况</p>
+</blockquote>
+<p><strong>方法三 jQuery —— $.clone() &#x2F; $.extend()</strong></p>
+<blockquote>
+<p>源码适合初学者学习，比较好理解</p>
+</blockquote>
+<p><strong>方法四 自己实现一个</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function deepCopy (obj) &#123;</span><br><span class="line">    var result;</span><br><span class="line"></span><br><span class="line">    //引用类型分数组和对象分别递归</span><br><span class="line">    if (Object.prototype.toString.call(obj) == &#x27;[object Array]&#x27;) &#123;</span><br><span class="line">      result = []</span><br><span class="line">      for (i = 0; i &lt; obj.length; i++) &#123;</span><br><span class="line">        result[i] = deepCopy(obj[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else if (Object.prototype.toString.call(obj) == &#x27;[object Object]&#x27;) &#123;</span><br><span class="line">      result = &#123;&#125;</span><br><span class="line">      for (var attr in obj) &#123;</span><br><span class="line">        result[attr] = deepCopy(obj[attr])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //值类型直接返回</span><br><span class="line">    else &#123;</span><br><span class="line">      return obj</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js-OOP原型与原型链 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="prototype原型对象
+
+每个函数都有一个默认的prototype属性，其实际上还是一个对象，如果被用在继承中，姑且叫做原型对象
+
+在构造函数中的prototype中定义的属性和方法，会被创建的,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="js-OOP原型与原型链 - lgz-BLOG"/>
+    <meta name="twitter:description" content="prototype原型对象
+
+每个函数都有一个默认的prototype属性，其实际上还是一个对象，如果被用在继承中，姑且叫做原型对象
+
+在构造函数中的prototype中定义的属性和方法，会被创建的,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="js-OOP原型与原型链 - lgz-BLOG"/>
+    <meta property="og:description" content="prototype原型对象
+
+每个函数都有一个默认的prototype属性，其实际上还是一个对象，如果被用在继承中，姑且叫做原型对象
+
+在构造函数中的prototype中定义的属性和方法，会被创建的,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">js-OOP原型与原型链</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">js-OOP原型与原型链</h1>
+        <div class="stuff">
+            <span>十二月 27, 2017</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="prototype原型对象"><a href="#prototype原型对象" class="headerlink" title="prototype原型对象"></a>prototype原型对象</h4><hr>
+<ul>
+<li><p>每个函数都有一个默认的<code>prototype</code>属性，其实际上还是一个对象，如果被用在继承中，姑且叫做原型对象</p>
+</li>
+<li><p>在构造函数中的<code>prototype</code>中定义的属性和方法，会被创建的对象所继承下来。举个栗子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function F()&#123;&#125;</span><br><span class="line">F.prototype.work = function()&#123;</span><br><span class="line">    console.log(&#x27;F is working..&#x27;);</span><br><span class="line">&#125;;</span><br><span class="line">var f = new F();</span><br><span class="line">f.work(); // F is working..</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当你创建函数时，<code>JS</code>会为这个函数自动添加 <code>prototype</code> 属性，值是空对象。而一旦你把这个函数当作构造函数（ <code>constructor</code> ）调用（即通过 <code>new</code>关键字调用），那么<code>JS</code>就会帮你创建该构造函数的实例，实例继承构造函数 <code>prototype</code> 的所有属性和方法（实例通过设置自己的<code>__proto__</code> 指向构造函数的 <code>prototype</code> 来实现这种继承）</p>
+</li>
+</ul>
+<h4 id="神秘的proto"><a href="#神秘的proto" class="headerlink" title="神秘的proto"></a>神秘的<strong>proto</strong></h4><hr>
+<ul>
+<li><code>JS</code>的对象中都包含了一个<code>__proto__</code>属性，其指向的是创建该对象时的构造函数的原型对象<code>prototype</code></li>
+</ul>
+<p><img src="https://segmentfault.com/img/bVzPrk" alt="img"></p>
+<ul>
+<li>从上面的输出结果看出，<code>f.__proto__</code>指向了其构造函数<code>F</code>的<code>prototype</code>，而<code>F.prototype</code>本身也是一个对象，其内部也有<code>__proto__</code>属性，其指向的是<code>Object.prototype</code>,直到最后<code>Object.prototype</code>指向<code>null</code>，这条原型链才结束</li>
+<li>因此，<code>__proto__</code>这个神秘的属性才是原型链形成的真正原因</li>
+</ul>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><hr>
+<ul>
+<li>由于原型对象本身也是对象，根据上边的定义，它也有自己的原型，而它自己的原型对象又可以有自己的原型，这样就组成了一条链，这个就是原型链，<code>JavaScritp</code>引擎在访问对象的属性时，如果在对象本身中没有找到，则会去原型链中查找，如果找到，直接返回值，如果整个链都遍历且没有找到属性，则返回<code>undefined</code>。原型链一般实现为一个链表，这样就可以按照一定的顺序来查找</li>
+</ul>
+<p><img src="https://segmentfault.com/img/bVcXNb" alt="img"></p>
+<ul>
+<li>从上图看出：<ul>
+<li><code>Object.prototype</code>是顶级对象，所有对象都继承自它。</li>
+<li><code>Function</code>继承 <code>Function</code>本身， <code>Function.prototype</code> 继承 <code>Object.prototype</code></li>
+<li><code>Function.prototype</code> 和 <code>Function.__proto__</code> 都指向 <code>Function.prototype</code></li>
+<li><code>Object.prototype.__proto__ === null</code> ，说明原型链到 <code>Object.prototype</code>终止</li>
+</ul>
+</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

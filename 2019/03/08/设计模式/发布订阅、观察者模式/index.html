@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>发布订阅、观察者模式（观察者模式） - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、观察者模式观察者模式定义了对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知，并自动更新
+观察者模式属于行为型模式，行为型模式关注的是对象之间的通讯，观察者,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="发布订阅、观察者模式（观察者模式） - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、观察者模式观察者模式定义了对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知，并自动更新
+观察者模式属于行为型模式，行为型模式关注的是对象之间的通讯，观察者,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="发布订阅、观察者模式（观察者模式） - lgz-BLOG"/>
+    <meta property="og:description" content="一、观察者模式观察者模式定义了对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知，并自动更新
+观察者模式属于行为型模式，行为型模式关注的是对象之间的通讯，观察者,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">发布订阅、观察者模式（观察者模式）</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">发布订阅、观察者模式（观察者模式）</h1>
+        <div class="stuff">
+            <span>三月 08, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、观察者模式"><a href="#一、观察者模式" class="headerlink" title="一、观察者模式"></a>一、观察者模式</h2><p>观察者模式定义了对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知，并自动更新</p>
+<p>观察者模式属于行为型模式，行为型模式关注的是对象之间的通讯，观察者模式就是观察者和被观察者之间的通讯</p>
+<p><img src="https://static.vue-js.com/d3a80020-3f7c-11ec-a752-75723a64e8f5.png" alt="img"></p>
+<p>例如生活中，我们可以用报纸期刊的订阅来形象的说明，当你订阅了一份报纸，每天都会有一份最新的报纸送到你手上，有多少人订阅报纸，报社就会发多少份报纸</p>
+<p>报社和订报纸的客户就形成了一对多的依赖关系</p>
+<p>实现代码如下：</p>
+<p>被观察者模式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Subject</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observerList</span> = [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">addObserver</span>(<span class="params">observer</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observerList</span>.<span class="title function_">push</span>(observer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">removeObserver</span>(<span class="params">observer</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="variable language_">this</span>.<span class="property">observerList</span>.<span class="title function_">findIndex</span>(<span class="function"><span class="params">o</span> =&gt;</span> o.<span class="property">name</span> === observer.<span class="property">name</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">observerList</span>.<span class="title function_">splice</span>(index, <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">notifyObservers</span>(<span class="params">message</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> observers = <span class="variable language_">this</span>.<span class="property">observeList</span>;</span><br><span class="line">    observers.<span class="title function_">forEach</span>(<span class="function"><span class="params">observer</span> =&gt;</span> observer.<span class="title function_">notified</span>(message));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>观察者：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Observer &#123;</span><br><span class="line"></span><br><span class="line">  constructor(name, subject) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    if (subject) &#123;</span><br><span class="line">      subject.addObserver(this);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  notified(message) &#123;</span><br><span class="line">    console.log(this.name, &#x27;got message&#x27;, message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> subject = <span class="keyword">new</span> <span class="title class_">Subject</span>();</span><br><span class="line"><span class="keyword">const</span> observerA = <span class="keyword">new</span> <span class="title class_">Observer</span>(<span class="string">&#x27;observerA&#x27;</span>, subject);</span><br><span class="line"><span class="keyword">const</span> observerB = <span class="keyword">new</span> <span class="title class_">Observer</span>(<span class="string">&#x27;observerB&#x27;</span>);</span><br><span class="line">subject.<span class="title function_">addObserver</span>(observerB);</span><br><span class="line">subject.<span class="title function_">notifyObservers</span>(<span class="string">&#x27;Hello from subject&#x27;</span>);</span><br><span class="line">subject.<span class="title function_">removeObserver</span>(observerA);</span><br><span class="line">subject.<span class="title function_">notifyObservers</span>(<span class="string">&#x27;Hello again&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上述代码中，观察者主动申请加入被观察者的列表，被观察者主动将观察者加入列表</p>
+<h2 id="二、发布订阅模式"><a href="#二、发布订阅模式" class="headerlink" title="二、发布订阅模式"></a>二、发布订阅模式</h2><p>发布-订阅是一种消息范式，消息的发送者（称为发布者）不会将消息直接发送给特定的接收者（称为订阅者）。而是将发布的消息分为不同的类别，无需了解哪些订阅者（如果有的话）可能存在</p>
+<p>同样的，订阅者可以表达对一个或多个类别的兴趣，只接收感兴趣的消息，无需了解哪些发布者存在</p>
+<p><img src="https://static.vue-js.com/e24d3cd0-3f7c-11ec-8e64-91fdec0f05a1.png" alt="img"></p>
+<p>实现代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PubSub</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">messages</span> = &#123;&#125;;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">listeners</span> = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 添加发布者</span></span><br><span class="line">  <span class="title function_">publish</span>(<span class="params">type, content</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> existContent = <span class="variable language_">this</span>.<span class="property">messages</span>[type];</span><br><span class="line">    <span class="keyword">if</span> (!existContent) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">messages</span>[type] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">messages</span>[type].<span class="title function_">push</span>(content);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 添加订阅者</span></span><br><span class="line">  <span class="title function_">subscribe</span>(<span class="params">type, cb</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> existListener = <span class="variable language_">this</span>.<span class="property">listeners</span>[type];</span><br><span class="line">    <span class="keyword">if</span> (!existListener) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">listeners</span>[type] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">listeners</span>[type].<span class="title function_">push</span>(cb);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 通知</span></span><br><span class="line">  <span class="title function_">notify</span>(<span class="params">type</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> messages = <span class="variable language_">this</span>.<span class="property">messages</span>[type];</span><br><span class="line">    <span class="keyword">const</span> subscribers = <span class="variable language_">this</span>.<span class="property">listeners</span>[type] || [];</span><br><span class="line">    subscribers.<span class="title function_">forEach</span>(<span class="function">(<span class="params">cb, index</span>) =&gt;</span> <span class="title function_">cb</span>(messages[index]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发布者代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Publisher</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name, context</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">context</span> = context;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">publish</span>(<span class="params">type, content</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">context</span>.<span class="title function_">publish</span>(type, content);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>订阅者代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Subscriber</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">name, context</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">context</span> = context;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">subscribe</span>(<span class="params">type, cb</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">context</span>.<span class="title function_">subscribe</span>(type, cb);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">TYPE_A</span> = <span class="string">&#x27;music&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">TYPE_B</span> = <span class="string">&#x27;movie&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">TYPE_C</span> = <span class="string">&#x27;novel&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pubsub = <span class="keyword">new</span> <span class="title class_">PubSub</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> publisherA = <span class="keyword">new</span> <span class="title class_">Publisher</span>(<span class="string">&#x27;publisherA&#x27;</span>, pubsub);</span><br><span class="line">publisherA.<span class="title function_">publish</span>(<span class="variable constant_">TYPE_A</span>, <span class="string">&#x27;we are young&#x27;</span>);</span><br><span class="line">publisherA.<span class="title function_">publish</span>(<span class="variable constant_">TYPE_B</span>, <span class="string">&#x27;the silicon valley&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> publisherB = <span class="keyword">new</span> <span class="title class_">Publisher</span>(<span class="string">&#x27;publisherB&#x27;</span>, pubsub);</span><br><span class="line">publisherB.<span class="title function_">publish</span>(<span class="variable constant_">TYPE_A</span>, <span class="string">&#x27;stronger&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> publisherC = <span class="keyword">new</span> <span class="title class_">Publisher</span>(<span class="string">&#x27;publisherC&#x27;</span>, pubsub);</span><br><span class="line">publisherC.<span class="title function_">publish</span>(<span class="variable constant_">TYPE_C</span>, <span class="string">&#x27;a brief history of time&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> subscriberA = <span class="keyword">new</span> <span class="title class_">Subscriber</span>(<span class="string">&#x27;subscriberA&#x27;</span>, pubsub);</span><br><span class="line">subscriberA.<span class="title function_">subscribe</span>(<span class="variable constant_">TYPE_A</span>, <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;subscriberA received&#x27;</span>, res)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> subscriberB = <span class="keyword">new</span> <span class="title class_">Subscriber</span>(<span class="string">&#x27;subscriberB&#x27;</span>, pubsub);</span><br><span class="line">subscriberB.<span class="title function_">subscribe</span>(<span class="variable constant_">TYPE_C</span>, <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;subscriberB received&#x27;</span>, res)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> subscriberC = <span class="keyword">new</span> <span class="title class_">Subscriber</span>(<span class="string">&#x27;subscriberC&#x27;</span>, pubsub);</span><br><span class="line">subscriberC.<span class="title function_">subscribe</span>(<span class="variable constant_">TYPE_B</span>, <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;subscriberC received&#x27;</span>, res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">pubsub.<span class="title function_">notify</span>(<span class="variable constant_">TYPE_A</span>);</span><br><span class="line">pubsub.<span class="title function_">notify</span>(<span class="variable constant_">TYPE_B</span>);</span><br><span class="line">pubsub.<span class="title function_">notify</span>(<span class="variable constant_">TYPE_C</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上述代码，发布者和订阅者需要通过发布订阅中心进行关联，发布者的发布动作和订阅者的订阅动作相互独立，无需关注对方，消息派发由发布订阅中心负责</p>
+<h2 id="三、区别"><a href="#三、区别" class="headerlink" title="三、区别"></a>三、区别</h2><p>两种设计模式思路是一样的，举个生活例子：</p>
+<ul>
+<li>观察者模式：某公司给自己员工发月饼发粽子，是由公司的行政部门发送的，这件事不适合交给第三方，原因是“公司”和“员工”是一个整体</li>
+<li>发布-订阅模式：某公司要给其他人发各种快递，因为“公司”和“其他人”是独立的，其唯一的桥梁是“快递”，所以这件事适合交给第三方快递公司解决</li>
+</ul>
+<p>上述过程中，如果公司自己去管理快递的配送，那公司就会变成一个快递公司，业务繁杂难以管理，影响公司自身的主营业务，因此使用何种模式需要考虑什么情况两者是需要耦合的</p>
+<p>两者区别如下图：</p>
+<p><img src="https://files.mdnice.com/user/155/9141682c-7386-4f12-8412-fb17a1cd4bf6.png" alt="img"></p>
+<ul>
+<li>在观察者模式中，观察者是知道Subject的，Subject一直保持对观察者进行记录。然而，在发布订阅模式中，发布者和订阅者不知道对方的存在。它们只有通过消息代理进行通信。</li>
+<li>在发布订阅模式中，组件是松散耦合的，正好和观察者模式相反。</li>
+<li>观察者模式大多数时候是同步的，比如当事件触发，Subject就会去调用观察者的方法。而发布-订阅模式大多数时候是异步的（使用消息队列）</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

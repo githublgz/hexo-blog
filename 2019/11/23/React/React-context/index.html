@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>React context - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="简介
+React 组件之间的通信是基于 props 的单向数据流，即父组件通过 props 向子组件传值，亦或是子组件执行传入的函数来更新父组件的state，这都满足了我们大部分的使用场景
+一般地，,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="React context - lgz-BLOG"/>
+    <meta name="twitter:description" content="简介
+React 组件之间的通信是基于 props 的单向数据流，即父组件通过 props 向子组件传值，亦或是子组件执行传入的函数来更新父组件的state，这都满足了我们大部分的使用场景
+一般地，,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="React context - lgz-BLOG"/>
+    <meta property="og:description" content="简介
+React 组件之间的通信是基于 props 的单向数据流，即父组件通过 props 向子组件传值，亦或是子组件执行传入的函数来更新父组件的state，这都满足了我们大部分的使用场景
+一般地，,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">React context</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">React context</h1>
+        <div class="stuff">
+            <span>十一月 23, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li><code>React</code> 组件之间的通信是基于 <code>props</code> 的单向数据流，即父组件通过 <code>props</code> 向子组件传值，亦或是子组件执行传入的函数来更新父组件的<code>state</code>，这都满足了我们大部分的使用场景</li>
+<li>一般地，对于兄弟组件之间的通信，是通过它们共同的祖先组件进行的，即 Lifting State Up，官方文档也有介绍。组件一通过事件将状态变更通知它们共同的祖先组件，祖先组再将状态同步到组件二</li>
+<li>但是，如果组件之间嵌套的比较深，即使提升状态到共同父组件，再同步状态到相应的组件还是需要一层一层的传递下去，可能会比较繁琐</li>
+<li>在对应的场景中，<code>context</code> 就可以缩短父组件到子组件的属性传递路径</li>
+</ul>
+<h2 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import Parent from &#x27;./Parent&#x27;</span><br><span class="line">import ChildOne from &#x27;../components/ChildOne&#x27;</span><br><span class="line">import ChildTwo from &#x27;../components/ChildTwo&#x27;</span><br><span class="line"></span><br><span class="line">export default class Container extends React.Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state = &#123; value: &#x27;&#x27; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    changeValue = value =&gt; &#123;</span><br><span class="line">        this.setState(&#123; value &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    getChildContext() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            value: this.state.value,</span><br><span class="line">            changeValue: this.changeValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Parent&gt;</span><br><span class="line">                    &lt;ChildOne /&gt;</span><br><span class="line">                &lt;/Parent&gt;</span><br><span class="line">                &lt;Parent&gt;</span><br><span class="line">                    &lt;ChildTwo /&gt;</span><br><span class="line">                &lt;/Parent&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Container.childContextTypes = &#123;</span><br><span class="line">    value: PropTypes.string,</span><br><span class="line">    changeValue: PropTypes.func</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Parent.jsx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;</span><br><span class="line"></span><br><span class="line">const Parent = (props) =&gt; (</span><br><span class="line">    &lt;div &#123;...props&#125; /&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default Parent</span><br></pre></td></tr></table></figure>
+
+<p>ChildOne.jsx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">export default class ChildOne extends React.Component &#123;</span><br><span class="line"></span><br><span class="line">    handleChange = (e) =&gt; &#123;</span><br><span class="line">        const &#123; changeValue &#125; = this.context</span><br><span class="line">        changeValue(e.target.value)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                子组件一</span><br><span class="line">                &lt;input onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ChildOne.contextTypes = &#123;</span><br><span class="line">    changeValue: PropTypes.func</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ChildTwo.jsx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">export default class ChildTwo extends React.Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                子组件二</span><br><span class="line">                &lt;p&gt;&#123;this.context.value&#125;&lt;/p&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ChildTwo.contextTypes = &#123;</span><br><span class="line">    value: PropTypes.string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 <code>Container.childContextTypes</code> 中进行接口的声明，通过 <code>getChildContext</code> 返回更新后的<code>state</code>，在 <code>Child.contextTypes</code> 中声明要获取的接口，这样在子组件内部就能通过 <code>this.context</code> 获取到。通过 <code>Context</code> 这样一个中间对象，<code>ChildOne</code> 和 <code>ChildTwo</code> 就可以相互通信了</p>
+</blockquote>
+<h2 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h2><blockquote>
+<p>组件嵌套传递属性，在导航里面引用<code>Page</code>中的变量</p>
+</blockquote>
+<ul>
+<li>使用<code>context</code>来传递</li>
+<li>使用props层级传递</li>
+</ul>
+<blockquote>
+<p>使用<code>context</code>组件需要定义<code>propTypes</code>,需要严格校验、声明类型、字段</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class Page extends React.Component &#123;</span><br><span class="line">    static childContextTypes = &#123;</span><br><span class="line">       user:PropTypes.string</span><br><span class="line">    &#125;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props)</span><br><span class="line">        this.state = &#123;user:&#x27;poetries&#x27;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    getChildContext()&#123;</span><br><span class="line">        return this.state</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;p&gt;我是&#123;this.state.user&#125;&lt;/p&gt;</span><br><span class="line">            &lt;Siderbar /&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Siderbar extends React.Component &#123;</span><br><span class="line">    static childContextTypes = &#123;</span><br><span class="line">       user:PropTypes.string</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;p&gt;侧边栏&lt;/p&gt;</span><br><span class="line">            &lt;Navbar /&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Navbar extends React.Component &#123;</span><br><span class="line">    static childContextTypes = &#123;</span><br><span class="line">       user:PropTypes.string</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;p&gt;我是&#123;this.context.user&#125;的导航栏&lt;/p&gt;</span><br><span class="line">            &lt;Siderbar /&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="context在Provider种应用"><a href="#context在Provider种应用" class="headerlink" title="context在Provider种应用"></a>context在Provider种应用</h2><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">provider`组件就是使用`context`，把`store`放到`context`里，所有的子元素可以直接取到`store</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import PropTypes from &#x27;prop-types&#x27;</span><br><span class="line">class Provider extends Component &#123;</span><br><span class="line">    static childContextTypes = &#123;</span><br><span class="line">        store:Protypes.object</span><br><span class="line">    &#125;</span><br><span class="line">    constructor(props,context)&#123;</span><br><span class="line">        super(props,context)</span><br><span class="line">        this.store = props.store</span><br><span class="line">    &#125;</span><br><span class="line">    getChildContext()&#123;</span><br><span class="line">        //把传进来的store放进全局</span><br><span class="line">        return &#123;store:this.store&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return this.props.children</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>connect</code> 负责连接组件，给到<code>redux</code>里的数据放到组件的属性里</p>
+</blockquote>
+<ul>
+<li>负责接收一个组件，把<code>state</code>里的一些数据放进去，返回一个组件</li>
+<li>数据变化的时候，能够通知组件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//高阶组件写法</span><br><span class="line">const connect = (mapStateToProps=state=&gt;state,mapDispatchToProps=&#123;&#125;)=&gt;(wrapperComponent)=&gt;&#123;</span><br><span class="line">    return class ConnectComponent extends React.Component &#123;</span><br><span class="line">        //负责接收组件</span><br><span class="line">        static contextTypes = &#123;</span><br><span class="line">            store:PropTypes.obejct</span><br><span class="line">        &#125;</span><br><span class="line">        constructor(props)&#123;</span><br><span class="line">            super(props, context)&#123;</span><br><span class="line">                this.state = &#123;</span><br><span class="line">                    props:&#123;&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        componentDidMount()&#123;</span><br><span class="line">            const &#123;store&#125; = this.context</span><br><span class="line">            store.subscribe(()=&gt;this.update())</span><br><span class="line">            this.update()</span><br><span class="line">        &#125;</span><br><span class="line">        update()&#123;</span><br><span class="line">            //  获取mapStateToProps、mapDispatchToProps 放入this.props里</span><br><span class="line">            </span><br><span class="line">            const &#123;store&#125;=this.context</span><br><span class="line">            const stateProps = mapStateToProps(store.getState())</span><br><span class="line">            const dispatchProps = bindActionCreators(mapDispatchProps,store.dispatch)</span><br><span class="line">            this.setState(&#123;</span><br><span class="line">                props:&#123;</span><br><span class="line">                    ...this.state.props,</span><br><span class="line">                    ...stateProps,</span><br><span class="line">                    ...dispatchProps</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        render()&#123;</span><br><span class="line">            // 把数据放入</span><br><span class="line">            return &lt;wrapperComponent &#123;...this.state.props&#125;/&gt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

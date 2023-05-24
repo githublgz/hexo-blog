@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>React connect - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、connect用法
+作用：连接React组件与 Redux store
+
+1234567connect([mapStateToProps], [mapDispatchToProps], [mer,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="React connect - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、connect用法
+作用：连接React组件与 Redux store
+
+1234567connect([mapStateToProps], [mapDispatchToProps], [mer,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="React connect - lgz-BLOG"/>
+    <meta property="og:description" content="一、connect用法
+作用：连接React组件与 Redux store
+
+1234567connect([mapStateToProps], [mapDispatchToProps], [mer,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">React connect</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">React connect</h1>
+        <div class="stuff">
+            <span>十一月 10, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、connect用法"><a href="#一、connect用法" class="headerlink" title="一、connect用法"></a>一、connect用法</h2><blockquote>
+<p>作用：连接<code>React</code>组件与 <code>Redux store</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">connect([mapStateToProps], [mapDispatchToProps], [mergeProps],[options])</span><br><span class="line">// 这个函数允许我们将 store 中的数据作为 props 绑定到组件上</span><br><span class="line">const mapStateToProps = (state) =&gt; &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    count: state.count</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个函数的第一个参数就是 <code>Redux</code> 的 <code>store</code>，我们从中摘取了 <code>count</code> 属性。你不必将 <code>state</code> 中的数据原封不动地传入组件，可以根据 <code>state</code> 中的数据，动态地输出组件需要的（最小）属性</li>
+<li>函数的第二个参数 <code>ownProps</code>，是组件自己的 <code>props</code></li>
+</ul>
+<blockquote>
+<p>当 <code>state</code> 变化，或者 <code>ownProps</code> 变化的时候，<code>mapStateToProps</code> 都会被调用，计算出一个新的 <code>stateProps</code>，（在与 <code>ownProps merge</code> 后）更新给组件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapDispatchToProps(dispatch, ownProps): dispatchProps</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect` 的第二个参数是 `mapDispatchToProps`，它的功能是，将 `action` 作为 `props`绑定到组件上，也会成为 `MyComp` 的 `props</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="二、原理解析"><a href="#二、原理解析" class="headerlink" title="二、原理解析"></a>二、原理解析</h2><blockquote>
+<p>首先<code>connect</code>之所以会成功，是因为<code>Provider</code>组件</p>
+</blockquote>
+<ul>
+<li>在原应用组件上包裹一层，使原来整个应用成为<code>Provider</code>的子组件</li>
+<li>接收<code>Redux</code>的<code>store</code>作为<code>props</code>，通过<code>context</code>对象传递给子孙组件上的<code>connect</code></li>
+</ul>
+<p><strong>connect做了些什么</strong></p>
+<blockquote>
+<p>它真正连接 <code>Redux</code> 和 <code>React</code>，它包在我们的容器组件的外一层，它接收上面 <code>Provider</code>提供的 <code>store</code> 里面的 <code>state</code>和 <code>dispatch</code>，传给一个构造函数，返回一个对象，以属性形式传给我们的容器组件</p>
+</blockquote>
+<h2 id="三、源码"><a href="#三、源码" class="headerlink" title="三、源码"></a>三、源码</h2><blockquote>
+<p><code>connect</code>是一个高阶函数，首先传入<code>mapStateToProps</code>、<code>mapDispatchToProps</code>，然后返回一个生产<code>Component</code>的函数(<code>wrapWithConnect</code>)，然后再将真正的<code>Component</code>作为参数传入<code>wrapWithConnect</code>，这样就生产出一个经过包裹的<code>Connect</code>组件，该组件具有如下特点</p>
+</blockquote>
+<ul>
+<li>通过<code>props.store</code>获取祖先<code>Component</code>的<code>store props</code>包括<code>stateProps</code>、<code>dispatchProps</code>、<code>parentProps</code>,合并在一起得到<code>nextState</code>，作为<code>props</code>传给真正的<code>Component</code></li>
+<li><code>componentDidMount</code>时，添加事件<code>this.store.subscribe(this.handleChange)</code>，实现页面交互</li>
+<li><code>shouldComponentUpdate</code>时判断是否有避免进行渲染，提升页面性能，并得到<code>nextState</code></li>
+<li><code>componentWillUnmount</code>时移除注册的事件<code>this.handleChange</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// 主要逻辑</span><br><span class="line"></span><br><span class="line">export default function connect(mapStateToProps, mapDispatchToProps, mergeProps, options = &#123;&#125;) &#123;</span><br><span class="line">  return function wrapWithConnect(WrappedComponent) &#123;</span><br><span class="line">    class Connect extends Component &#123;</span><br><span class="line">      constructor(props, context) &#123;</span><br><span class="line">        // 从祖先Component处获得store</span><br><span class="line">        this.store = props.store || context.store</span><br><span class="line">        this.stateProps = computeStateProps(this.store, props)</span><br><span class="line">        this.dispatchProps = computeDispatchProps(this.store, props)</span><br><span class="line">        this.state = &#123; storeState: null &#125;</span><br><span class="line">        // 对stateProps、dispatchProps、parentProps进行合并</span><br><span class="line">        this.updateState()</span><br><span class="line">      &#125;</span><br><span class="line">      shouldComponentUpdate(nextProps, nextState) &#123;</span><br><span class="line">        // 进行判断，当数据发生改变时，Component重新渲染</span><br><span class="line">        if (propsChanged || mapStateProducedChange || dispatchPropsChanged) &#123;</span><br><span class="line">          this.updateState(nextProps)</span><br><span class="line">            return true</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        componentDidMount() &#123;</span><br><span class="line">          // 改变Component的state</span><br><span class="line">          this.store.subscribe(() = &#123;</span><br><span class="line">            this.setState(&#123;</span><br><span class="line">              storeState: this.store.getState()</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        render() &#123;</span><br><span class="line">          // 生成包裹组件Connect</span><br><span class="line">          return (</span><br><span class="line">            &lt;WrappedComponent &#123;...this.nextState&#125; /&gt;</span><br><span class="line">          )</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      Connect.contextTypes = &#123;</span><br><span class="line">        store: storeShape</span><br><span class="line">      &#125;</span><br><span class="line">      return Connect;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

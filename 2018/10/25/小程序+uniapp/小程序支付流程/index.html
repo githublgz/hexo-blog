@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小程序支付流程 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、前言微信小程序为电商类小程序，提供了非常完善、优秀、安全的支付功能
+在小程序内可调用微信的API完成支付功能，方便、快捷
+场景如下图所示：
+
+
+
+用户通过分享或扫描二维码进入商户小程序，用户选择,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="小程序支付流程 - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、前言微信小程序为电商类小程序，提供了非常完善、优秀、安全的支付功能
+在小程序内可调用微信的API完成支付功能，方便、快捷
+场景如下图所示：
+
+
+
+用户通过分享或扫描二维码进入商户小程序，用户选择,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="小程序支付流程 - lgz-BLOG"/>
+    <meta property="og:description" content="一、前言微信小程序为电商类小程序，提供了非常完善、优秀、安全的支付功能
+在小程序内可调用微信的API完成支付功能，方便、快捷
+场景如下图所示：
+
+
+
+用户通过分享或扫描二维码进入商户小程序，用户选择,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">小程序支付流程</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">小程序支付流程</h1>
+        <div class="stuff">
+            <span>十月 25, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>微信小程序为电商类小程序，提供了非常完善、优秀、安全的支付功能</p>
+<p>在小程序内可调用微信的<code>API</code>完成支付功能，方便、快捷</p>
+<p>场景如下图所示：</p>
+<p><img src="https://static.vue-js.com/6e0cff40-34a0-11ec-a752-75723a64e8f5.png" alt="img"></p>
+<p><img src="https://static.vue-js.com/34864830-34a0-11ec-8e64-91fdec0f05a1.png" alt="img"></p>
+<ul>
+<li>用户通过分享或扫描二维码进入商户小程序，用户选择购买，完成选购流程</li>
+<li>调起微信支付控件，用户开始输入支付密码</li>
+<li>密码验证通过，支付成功。商户后台得到支付成功的通知</li>
+<li>返回商户小程序，显示购买成功</li>
+<li>微信支付公众号下发支付凭证</li>
+</ul>
+<h2 id="二、流程"><a href="#二、流程" class="headerlink" title="二、流程"></a>二、流程</h2><p>以电商小程序为例</p>
+<p>支付流程图如下所示：</p>
+<p><img src="https://static.vue-js.com/76b66780-34a0-11ec-8e64-91fdec0f05a1.png" alt="img"></p>
+<p>具体的做法：</p>
+<ul>
+<li>打开某小程序，点击直接下单</li>
+<li>wx.login获取用户临时登录凭证code，发送到后端服务器换取openId</li>
+<li>在下单时，小程序需要将购买的商品Id，商品数量，以及用户的openId传送到服务器</li>
+<li>服务器在接收到商品Id、商品数量、openId后，生成服务期订单数据，同时经过一定的签名算法，向微信支付发送请求，获取预付单信息(prepay_id)，同时将获取的数据再次进行相应规则的签名，向小程序端响应必要的信息</li>
+<li>小程序端在获取对应的参数后，调用wx.requestPayment()发起微信支付，唤醒支付工作台，进行支付</li>
+<li>接下来的一些列操作都是由用户来操作的包括了微信支付密码，指纹等验证，确认支付之后执行鉴权调起支付</li>
+<li>鉴权调起支付：在微信后台进行鉴权，微信后台直接返回给前端支付的结果，前端收到返回数据后对支付结果进行展示</li>
+<li>推送支付结果：微信后台在给前端返回支付的结果后，也会向后台也返回一个支付结果，后台通过这个支付结果来更新订单的状态</li>
+</ul>
+<p>其中后端响应数据必要的信息则是<code>wx.requestPayment</code>方法所需要的参数，大致如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">requestPayment</span>(&#123;</span><br><span class="line">  <span class="comment">// 时间戳</span></span><br><span class="line">  <span class="attr">timeStamp</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="comment">// 随机字符串</span></span><br><span class="line">  <span class="attr">nonceStr</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="comment">// 统一下单接口返回的 prepay_id 参数值</span></span><br><span class="line">  <span class="attr">package</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="comment">// 签名类型</span></span><br><span class="line">  <span class="attr">signType</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="comment">// 签名</span></span><br><span class="line">  <span class="attr">paySign</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="comment">// 调用成功回调</span></span><br><span class="line">  success () &#123;&#125;,</span><br><span class="line">  <span class="comment">// 失败回调</span></span><br><span class="line">  fail () &#123;&#125;,</span><br><span class="line">  <span class="comment">// 接口调用结束回调</span></span><br><span class="line">  complete () &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>参数表如下所示：</p>
+<p><img src="https://files.mdnice.com/user/155/48efed1f-d67f-45a7-ab2c-89a6424fafa0.png" alt="img"></p>
+<h2 id="三、结束"><a href="#三、结束" class="headerlink" title="三、结束"></a>三、结束</h2><p>小程序支付和以往的网页、APP微信支付大同小异，可以说小程序的支付变得更加简洁，不需要设置支付目录、域名授权等操作</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

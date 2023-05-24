@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>git rebase 和 git merge - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、是什么在使用 git 进行版本管理的项目中，当完成一个特性的开发并将其合并到 master 分支时，会有两种方式：
+
+git merge
+git rebase
+
+git rebase 与 git,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="git rebase 和 git merge - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、是什么在使用 git 进行版本管理的项目中，当完成一个特性的开发并将其合并到 master 分支时，会有两种方式：
+
+git merge
+git rebase
+
+git rebase 与 git,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="git rebase 和 git merge - lgz-BLOG"/>
+    <meta property="og:description" content="一、是什么在使用 git 进行版本管理的项目中，当完成一个特性的开发并将其合并到 master 分支时，会有两种方式：
+
+git merge
+git rebase
+
+git rebase 与 git,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">git rebase 和 git merge</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">git rebase 和 git merge</h1>
+        <div class="stuff">
+            <span>十一月 26, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、是什么"><a href="#一、是什么" class="headerlink" title="一、是什么"></a>一、是什么</h2><p>在使用 <code>git</code> 进行版本管理的项目中，当完成一个特性的开发并将其合并到 <code>master</code> 分支时，会有两种方式：</p>
+<ul>
+<li>git merge</li>
+<li>git rebase</li>
+</ul>
+<p><code>git rebase</code> 与 <code>git merge</code>都有相同的作用，都是将一个分支的提交合并到另一分支上，但是在原理上却不相同</p>
+<p>用法上两者也十分的简单：</p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>将当前分支合并到指定分支，命令用法如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge xxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>将当前分支移植到指定分支或指定<code>commit</code>之上，用法如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+
+<p>常见的参数有<code>--continue</code>，用于解决冲突之后，继续执行<code>rebase</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、分析"><a href="#二、分析" class="headerlink" title="二、分析"></a>二、分析</h2><h3 id="git-merge-1"><a href="#git-merge-1" class="headerlink" title="git merge"></a>git merge</h3><p>通过<code>git merge</code>将当前分支与<code>xxx</code>分支合并，产生的新的<code>commit</code>对象有两个父节点</p>
+<p>如果“指定分支”本身是当前分支的一个直接子节点，则会产生快照合并</p>
+<p>举个例子，<code>bugfix</code>分支是从<code>maste</code>r分支分叉出来的，如下所示：</p>
+<p><img src="https://static.vue-js.com/88410a30-fdd4-11eb-991d-334fd31f0201.png" alt="img"></p>
+<p>合并<code>bugfix</code>分支到<code>master</code>分支时，如果<code>master</code>分支的状态没有被更改过，即 <code>bugfix</code>分支的历史记录包含<code>master</code>分支所有的历史记录</p>
+<p>所以通过把<code>master</code>分支的位置移动到<code>bugfix</code>的最新分支上，就完成合并</p>
+<p>如果<code>master</code>分支的历史记录在创建<code>bugfix</code>分支后又有新的提交，如下情况：</p>
+<p><img src="https://static.vue-js.com/929eb220-fdd4-11eb-991d-334fd31f0201.png" alt="img"></p>
+<p>这时候使用<code>git merge</code>的时候，会生成一个新的提交，并且<code>master</code>分支的<code>HEAD</code>会移动到新的分支上，如下：</p>
+<p><img src="https://static.vue-js.com/9fdfa3e0-fdd4-11eb-991d-334fd31f0201.png" alt="img"></p>
+<p>从上面可以看到，会把两个分支的最新快照以及二者最近的共同祖先进行三方合并，合并的结果是生成一个新的快照</p>
+<h3 id="git-rebase-1"><a href="#git-rebase-1" class="headerlink" title="git rebase"></a>git rebase</h3><p>同样，<code>master</code>分支的历史记录在创建<code>bugfix</code>分支后又有新的提交，如下情况：</p>
+<p><img src="https://static.vue-js.com/ab2d5120-fdd4-11eb-bc6f-3f06e1491664.png" alt="img"></p>
+<p>通过<code>git rebase</code>，会变成如下情况：</p>
+<p><img src="https://static.vue-js.com/b72aed70-fdd4-11eb-991d-334fd31f0201.png" alt="img"></p>
+<p>在移交过程中，如果发生冲突，需要修改各自的冲突，如下：</p>
+<p><img src="https://static.vue-js.com/c9ba0e80-fdd4-11eb-bc6f-3f06e1491664.png" alt="img"></p>
+<p><code>rebase</code>之后，<code>master</code>的<code>HEAD</code>位置不变。因此，要合并<code>master</code>分支和<code>bugfix</code>分支</p>
+<p><img src="https://static.vue-js.com/dc660660-fdd4-11eb-991d-334fd31f0201.png" alt="img"></p>
+<p>从上面可以看到，<code>rebase</code>会找到不同的分支的最近共同祖先，如上图的<code>B</code></p>
+<p>然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件（老的提交<code>X</code>和<code>Y</code>也没有被销毁，只是简单地不能再被访问或者使用）</p>
+<p>然后将当前分支指向目标最新位置<code>D</code>, 然后将之前另存为临时文件的修改依序应用</p>
+<h2 id="三、区别"><a href="#三、区别" class="headerlink" title="三、区别"></a>三、区别</h2><p>从上面可以看到，<code>merge</code>和<code>rebasea</code>都是合并历史记录，但是各自特性不同：</p>
+<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p>通过<code>merge</code>合并分支会新增一个<code>merge commit</code>，然后将两个分支的历史联系起来</p>
+<p>其实是一种非破坏性的操作，对现有分支不会以任何方式被更改，但是会导致历史记录相对复杂</p>
+<h3 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h3><p><code>rebase</code>会将整个分支移动到另一个分支上，有效地整合了所有分支上的提交</p>
+<p>主要的好处是历史记录更加清晰，是在原有提交的基础上将差异内容反映进去，消除了 <code>git merge</code>所需的不必要的合并提交</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

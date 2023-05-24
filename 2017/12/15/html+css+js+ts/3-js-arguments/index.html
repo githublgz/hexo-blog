@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js-arguments对象 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="每个函数都会有一个Arguments对象实例arguments，它引用着函数的实参，可以用数组下标的方式”[]”引用arguments的元素。arguments.length为函数实参个数，argu,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="js-arguments对象 - lgz-BLOG"/>
+    <meta name="twitter:description" content="每个函数都会有一个Arguments对象实例arguments，它引用着函数的实参，可以用数组下标的方式”[]”引用arguments的元素。arguments.length为函数实参个数，argu,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="js-arguments对象 - lgz-BLOG"/>
+    <meta property="og:description" content="每个函数都会有一个Arguments对象实例arguments，它引用着函数的实参，可以用数组下标的方式”[]”引用arguments的元素。arguments.length为函数实参个数，argu,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">js-arguments对象</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">js-arguments对象</h1>
+        <div class="stuff">
+            <span>十二月 15, 2017</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>每个函数都会有一个Arguments对象实例arguments，它引用着函数的实参，可以用数组下标的方式”[]”引用arguments的元素。<code>arguments.length</code>为函数实参个数，<code>arguments.callee</code>引用函数自身。</p>
+<h3 id="Arguments对象介绍"><a href="#Arguments对象介绍" class="headerlink" title="Arguments对象介绍"></a>Arguments对象介绍</h3><p>Arguments对象是一个伪数组对象，它有length属性，可以arguments[i]来访问对象中的元素，但它不能用数组的一些方法，例如push，pop，slice等。</p>
+<h4 id="Arguments的length属性"><a href="#Arguments的length属性" class="headerlink" title="Arguments的length属性"></a>Arguments的length属性</h4><p>Arguments的length属性，表示function函数实际所传参数的个数。函数名点length可以获取函数期望的传参个数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function argTest(a,b,c)&#123;</span><br><span class="line">	var t = arguments.length; //实际传参个数</span><br><span class="line">	var e = argTest.length;   //期望传参个数</span><br><span class="line"></span><br><span class="line">	console.log(t);</span><br><span class="line">	console.log(e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">argTest(11,12);       //t=2,e=3</span><br><span class="line">argTest(11,12,13);    //t=3,e=3</span><br><span class="line">argTest(11,12,13,14); //t=4,e=3</span><br></pre></td></tr></table></figure>
+
+<h4 id="Arguments的参数访问"><a href="#Arguments的参数访问" class="headerlink" title="Arguments的参数访问"></a>Arguments的参数访问</h4><p>Arguments对象的参数访问可以用arguments[i]来访问函数所传的参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function argTest(a,b,c)&#123;</span><br><span class="line">	var arg = [];</span><br><span class="line">	for(var i=0;i&lt;arguments.length;i++)&#123;</span><br><span class="line">		arg.push(arguments[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	console.log(arg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">argTest(11,12);       //[11, 12]</span><br><span class="line">argTest(11,12,13);    //[11, 12, 13]</span><br><span class="line">argTest(11,12,13,14); //[11, 12, 13, 14]</span><br></pre></td></tr></table></figure>
+
+<h4 id="Arguments的callee调用"><a href="#Arguments的callee调用" class="headerlink" title="Arguments的callee调用"></a>Arguments的callee调用</h4><p>Arguments的callee属性可以调用函数本身，当函数正在执行时才可调用，可以实现方法的递归调用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function argTest(a,b,c)&#123;</span><br><span class="line">	var e = arguments.callee.toString();</span><br><span class="line">	console.log(e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">argTest(); //打印出函数本身</span><br></pre></td></tr></table></figure>
+
+<h4 id="Function对象caller属性"><a href="#Function对象caller属性" class="headerlink" title="Function对象caller属性"></a>Function对象caller属性</h4><p>Function对象的caller属性可以指向当前函数的调用者，当调用者函数正在执行时才可调用，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function callerTest()&#123;</span><br><span class="line"></span><br><span class="line">	if(callerTest.caller)&#123;</span><br><span class="line">		var caller = callerTest.caller.toString();</span><br><span class="line">		console.log(caller);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		console.log(&quot;no caller&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function handler()&#123;</span><br><span class="line">	callerTest();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function handlerToHandler()&#123;</span><br><span class="line">	handler();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">callerTest();        //no caller</span><br><span class="line">handler();           //返回调用者handler函数</span><br><span class="line">handlerToHandler();  //返回调用者handler函数</span><br></pre></td></tr></table></figure>
+
+<h3 id="Arguments的作用"><a href="#Arguments的作用" class="headerlink" title="Arguments的作用"></a>Arguments的作用</h3><h4 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h4><p>方法重载是指在一个类中定义多个同名的方法，但要求每个方法具有不同的参数的类型或参数的个数。<br>Javascript并没有重载函数的功能，但是Arguments对象能够模拟重载。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//普通方法实现方法重载</span><br><span class="line"></span><br><span class="line">function test(a,b,c)&#123;</span><br><span class="line">	if(a &amp;&amp; b &amp;&amp; c)&#123;</span><br><span class="line">		console.log(a + b + c);</span><br><span class="line">	&#125;else if(a &amp;&amp; b)&#123;</span><br><span class="line">		console.log(a + b);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		console.log(a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();           //undefined</span><br><span class="line">test(11,12);      //23</span><br><span class="line">test(11,12,13)    //36</span><br><span class="line">//Arguments对象实现方法重载</span><br><span class="line"></span><br><span class="line">function test()&#123;</span><br><span class="line">	var sum = 0;</span><br><span class="line">	for(var i=0;i&lt;arguments.length;i++)&#123;</span><br><span class="line">		sum += arguments[i];</span><br><span class="line">	&#125;</span><br><span class="line">	console.log(sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();          //0</span><br><span class="line">test(11,12);     //23</span><br><span class="line">test(11,12,13);  //36</span><br><span class="line">//ES6实现方法重载</span><br><span class="line"></span><br><span class="line">function test(...nums)&#123;</span><br><span class="line">	var sum = 0;</span><br><span class="line">	for(var i=0;i&lt;nums.length;i++)&#123;</span><br><span class="line">		sum += nums[i];</span><br><span class="line">	&#125;</span><br><span class="line">	console.log(sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();          //0</span><br><span class="line">test(11,12);     //23</span><br><span class="line">test(11,12,13);  //36</span><br></pre></td></tr></table></figure>
+
+<h4 id="递归调用"><a href="#递归调用" class="headerlink" title="递归调用"></a>递归调用</h4><p>这样的好处就是可以实现匿名函数的递归调用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//实现一个阶乘函数</span><br><span class="line"></span><br><span class="line">function factorial(n)&#123;</span><br><span class="line">	if(n == 1)&#123;</span><br><span class="line">		return 1;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		n * arguments.callee(n-1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(1); //1</span><br><span class="line">factorial(5); //120</span><br></pre></td></tr></table></figure>
+
+<h4 id="不定参问题"><a href="#不定参问题" class="headerlink" title="不定参问题"></a>不定参问题</h4><p>比如说，我想判断你传给我的一些数字的大小，取出最大的那个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function max()&#123;</span><br><span class="line">	var maxNum = Number.NEGATIVE_INFINITY;;</span><br><span class="line">	for(var i=0;i&lt;arguments.length;i++)&#123;</span><br><span class="line">		if(arguments[i]&gt; maxNum)&#123;</span><br><span class="line">			maxNum = arguments[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return maxNum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">max(1,2,3,11,4,10); //11</span><br><span class="line">max(2,-10,22,11);   //22</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

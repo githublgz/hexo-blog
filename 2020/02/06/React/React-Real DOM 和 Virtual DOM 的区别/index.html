@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Real DOM 和 Virtual DOM 的区别 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、是什么Real DOM，真实 DOM，意思为文档对象模型，是一个结构化文本的抽象，在页面渲染出的每一个结点都是一个真实 DOM 结构，如下：
+
+Virtual Dom，本质上是以 JavaScr,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Real DOM 和 Virtual DOM 的区别 - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、是什么Real DOM，真实 DOM，意思为文档对象模型，是一个结构化文本的抽象，在页面渲染出的每一个结点都是一个真实 DOM 结构，如下：
+
+Virtual Dom，本质上是以 JavaScr,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Real DOM 和 Virtual DOM 的区别 - lgz-BLOG"/>
+    <meta property="og:description" content="一、是什么Real DOM，真实 DOM，意思为文档对象模型，是一个结构化文本的抽象，在页面渲染出的每一个结点都是一个真实 DOM 结构，如下：
+
+Virtual Dom，本质上是以 JavaScr,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Real DOM 和 Virtual DOM 的区别</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Real DOM 和 Virtual DOM 的区别</h1>
+        <div class="stuff">
+            <span>二月 06, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、是什么"><a href="#一、是什么" class="headerlink" title="一、是什么"></a>一、是什么</h2><p>Real DOM，真实 <code>DOM</code>，意思为文档对象模型，是一个结构化文本的抽象，在页面渲染出的每一个结点都是一个真实 <code>DOM</code> 结构，如下：</p>
+<p><img src="https://static.vue-js.com/fc7ba8d0-d302-11eb-85f6-6fac77c0c9b3.png" alt="img"></p>
+<p><code>Virtual Dom</code>，本质上是以 <code>JavaScript</code> 对象形式存在的对 <code>DOM</code> 的描述</p>
+<p>创建虚拟 <code>DOM</code> 目的就是为了更好将虚拟的节点渲染到页面视图中，虚拟 <code>DOM</code> 对象的节点与真实 <code>DOM</code>的属性一一照应</p>
+<p>在 <code>React</code> 中，<code>JSX</code> 是其一大特性，可以让你在 <code>JS</code> 中通过使用 <code>XML</code> 的方式去直接声明界面的 <code>DOM</code>结构</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建 h1 标签，右边千万不能加引号</span></span><br><span class="line"><span class="keyword">const</span> vDom = <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>; </span><br><span class="line"><span class="comment">// 找到 &lt;div id=&quot;root&quot;&gt;&lt;/div&gt; 节点</span></span><br><span class="line"><span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>); </span><br><span class="line"><span class="comment">// 把创建的 h1 标签渲染到 root 节点上</span></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(vDom, root); </span><br></pre></td></tr></table></figure>
+
+<p>上述中，<code>ReactDOM.render()</code> 用于将你创建好的虚拟 <code>DOM</code> 节点插入到某个真实节点上，并渲染到页面上</p>
+<p><code>JSX</code> 实际是一种语法糖，在使用过程中会被 <code>babel</code> 进行编译转化成 <code>JS</code> 代码，上述 <code>VDOM</code> 转化为如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vDom = <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">  <span class="string">&#x27;h1&#x27;</span>，</span><br><span class="line">  &#123; <span class="attr">className</span>: <span class="string">&#x27;hClass&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;hId&#x27;</span> &#125;,</span><br><span class="line">  <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，<code>JSX</code> 就是为了简化直接调用 <code>React.createElement()</code> 方法：</p>
+<ul>
+<li>第一个参数是标签名，例如 h1、span、table…</li>
+<li>第二个参数是个对象，里面存着标签的一些属性，例如 id、class 等</li>
+<li>第三个参数是节点中的文本</li>
+</ul>
+<p>通过 <code>console.log(VDOM)</code>，则能够得到虚拟 <code>VDOM</code> 消息</p>
+<p><img src="https://static.vue-js.com/1716b9a0-d303-11eb-ab90-d9ae814b240d.png" alt="img"></p>
+<p>所以可以得到，<code>JSX</code> 通过 <code>babel</code> 的方式转化成 <code>React.createElement</code> 执行，返回值是一个对象，也就是虚拟 <code>DOM</code></p>
+<h2 id="二、区别"><a href="#二、区别" class="headerlink" title="二、区别"></a>二、区别</h2><p>两者的区别如下：</p>
+<ul>
+<li>虚拟 DOM 不会进行排版与重绘操作，而真实 DOM 会频繁重排与重绘</li>
+<li>虚拟 DOM 的总损耗是“虚拟 DOM 增删改+真实 DOM 差异增删改+排版与重绘”，真实 DOM 的总损耗是“真实 DOM 完全增删改+排版与重绘”</li>
+</ul>
+<p>拿<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU1OTgxNDQ1Nw==&mid=2247484516&idx=1&sn=965a4ce32bf93adb9ed112922c5cb8f5&chksm=fc10c632cb674f2484fdf914d76fba55afcefca3b5adcbe6cf4b0c7fd36e29d0292e8cefceb5&scene=178&cur_album_id=1711105826272116736#rd">以前文章 (opens new window)</a>举过的例子：</p>
+<p>传统的原生 <code>api</code> 或 <code>jQuery</code> 去操作 <code>DOM</code> 时，浏览器会从构建 <code>DOM</code> 树开始从头到尾执行一遍流程</p>
+<p>当你在一次操作时，需要更新 10 个 <code>DOM</code> 节点，浏览器没这么智能，收到第一个更新 <code>DOM</code> 请求后，并不知道后续还有 9 次更新操作，因此会马上执行流程，最终执行 10 次流程</p>
+<p>而通过 <code>VNode</code>，同样更新 10 个 <code>DOM</code> 节点，虚拟 <code>DOM</code> 不会立即操作 <code>DOM</code>，而是将这 10 次更新的 <code>diff</code> 内容保存到本地的一个 <code>js</code> 对象中，最终将这个 <code>js</code> 对象一次性 <code>attach</code> 到 <code>DOM</code> 树上，避免大量的无谓计算</p>
+<h2 id="三、优缺点"><a href="#三、优缺点" class="headerlink" title="三、优缺点"></a>三、优缺点</h2><p>真实 <code>DOM</code> 的优势：</p>
+<ul>
+<li>易用</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>效率低，解析速度慢，内存占用量过高</li>
+<li>性能差：频繁操作真实 DOM，易于导致重绘与回流</li>
+</ul>
+<p>使用虚拟 <code>DOM</code> 的优势如下：</p>
+<ul>
+<li>简单方便：如果使用手动操作真实 <code>DOM</code> 来完成页面，繁琐又容易出错，在大规模应用下维护起来也很困难</li>
+<li>性能方面：使用 Virtual DOM，能够有效避免真实 DOM 数频繁更新，减少多次引起重绘与回流，提高性能</li>
+<li>跨平台：React 借助虚拟 DOM，带来了跨平台的能力，一套代码多端运行</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>在一些性能要求极高的应用中虚拟 DOM 无法进行针对性的极致优化</li>
+<li>首次渲染大量 DOM 时，由于多了一层虚拟 DOM 的计算，速度比正常稍慢</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

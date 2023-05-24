@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>css-居中 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="水平居中方案
+方案一：text-align + inline-block
+12345678910111213&amp;lt;div id=&amp;quot;parent1&amp;quot;&amp;gt;	&amp;lt;div cl,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="css-居中 - lgz-BLOG"/>
+    <meta name="twitter:description" content="水平居中方案
+方案一：text-align + inline-block
+12345678910111213&amp;lt;div id=&amp;quot;parent1&amp;quot;&amp;gt;	&amp;lt;div cl,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="css-居中 - lgz-BLOG"/>
+    <meta property="og:description" content="水平居中方案
+方案一：text-align + inline-block
+12345678910111213&amp;lt;div id=&amp;quot;parent1&amp;quot;&amp;gt;	&amp;lt;div cl,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">css-居中</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">css-居中</h1>
+        <div class="stuff">
+            <span>二月 28, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/css/" rel="tag">css</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="水平居中方案"><a href="#水平居中方案" class="headerlink" title="水平居中方案"></a>水平居中方案</h3><hr>
+<h4 id="方案一：text-align-inline-block"><a href="#方案一：text-align-inline-block" class="headerlink" title="方案一：text-align + inline-block"></a>方案一：<code>text-align + inline-block</code></h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;parent1&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;child&quot;&gt;水平居中&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#parent1&#123;</span><br><span class="line">	text-align: center;</span><br><span class="line">	background:#ddd;</span><br><span class="line">	margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line">#parent1 .child&#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	background:#666;</span><br><span class="line">	color:#fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="方案二：margin：0-auto"><a href="#方案二：margin：0-auto" class="headerlink" title="方案二：margin：0 auto"></a>方案二：<code>margin：0 auto</code></h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;parent2&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;child&quot;&gt;水平居中&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#parent2&#123;</span><br><span class="line">	text-align: center;</span><br><span class="line">	background:#ddd;</span><br><span class="line">	margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line">#parent2 .child&#123;</span><br><span class="line">	display: table;</span><br><span class="line">	margin: 0 auto;</span><br><span class="line">	background:#666;</span><br><span class="line">	color:#fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案三：absolute-transform"><a href="#方案三：absolute-transform" class="headerlink" title="方案三：absolute+transform)"></a>方案三：<code>absolute+transform)</code></h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;parent3&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;child&quot;&gt;水平居中&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#parent3&#123;</span><br><span class="line">	position: relative;</span><br><span class="line">	background:#ddd;</span><br><span class="line">	margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line">#parent3 .child&#123;</span><br><span class="line">	position: absolute;</span><br><span class="line">	left: 50%;</span><br><span class="line">	transform: translateX(-50%);</span><br><span class="line">	background:#666;</span><br><span class="line">	color:#fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案四：justify-content"><a href="#方案四：justify-content" class="headerlink" title="方案四：justify-content"></a>方案四：<code>justify-content</code></h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;parent4&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;child&quot;&gt;水平居中&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#parent4&#123;</span><br><span class="line">	display: flex;</span><br><span class="line">	justify-content: center;</span><br><span class="line">	background:#ddd;</span><br><span class="line">	margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line">#parent4 .child&#123;</span><br><span class="line">	margin:0 auto;</span><br><span class="line">	background:#666;</span><br><span class="line">	color:#fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="垂直居中方案"><a href="#垂直居中方案" class="headerlink" title="垂直居中方案"></a>垂直居中方案</h3><hr>
+<h4 id="方案一：-利用-line-height-实现垂直居中"><a href="#方案一：-利用-line-height-实现垂直居中" class="headerlink" title="方案一： 利用 line-height 实现垂直居中"></a>方案一： 利用 line-height 实现垂直居中</h4><hr>
+<ul>
+<li>这种方法适用于单行文本垂直居中,如果文本内容太长，出现了换行，换行后的内容会溢出</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example1&quot;&gt;</span><br><span class="line">    单行文字垂直居中</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#example1 &#123;</span><br><span class="line">    height: 100px;</span><br><span class="line">    line-height: 100px;</span><br><span class="line">    background: #161616;</span><br><span class="line">    color: #fff;</span><br><span class="line">    width: 200px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案二-利用-display-table-实现垂直居中"><a href="#方案二-利用-display-table-实现垂直居中" class="headerlink" title="方案二 利用 display: table 实现垂直居中"></a>方案二 利用 display: table 实现垂直居中</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example2&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;块区域垂直居中&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#example2 &#123;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background: #161616;</span><br><span class="line">    color: #fff;</span><br><span class="line">    width: 400px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    display: table;</span><br><span class="line">			margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line">#example2 .inner&#123;</span><br><span class="line">    display: table-cell;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    height: 50px;</span><br><span class="line">    background:#999;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案三-margin-填充-这种方法需要知道内外容器的大小"><a href="#方案三-margin-填充-这种方法需要知道内外容器的大小" class="headerlink" title="方案三 margin 填充 这种方法需要知道内外容器的大小"></a>方案三 margin 填充 这种方法需要知道内外容器的大小</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example3&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;块区域垂直居中&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#example3 &#123;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background: #161616;</span><br><span class="line">    color: #fff;</span><br><span class="line">    width: 400px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">			margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line">#example3 .inner&#123;</span><br><span class="line">    margin-left: auto;</span><br><span class="line">    margin-right: auto;</span><br><span class="line">    margin-top: calc((100px - 50px)/2);</span><br><span class="line">    height: 50px;</span><br><span class="line">    background:#999;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案四：经典-absolute-布局上下文垂直居中"><a href="#方案四：经典-absolute-布局上下文垂直居中" class="headerlink" title="方案四：经典 absolute 布局上下文垂直居中"></a>方案四：经典 absolute 布局上下文垂直居中</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example4&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;块区域垂直居中&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#example4 &#123;</span><br><span class="line">    width: 400px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background: #161616;</span><br><span class="line">    color: #fff;</span><br><span class="line">    position: relative;</span><br><span class="line">		margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line">#example4 .inner&#123;</span><br><span class="line">    height: 50px;</span><br><span class="line">    width: 200px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    margin-top: -25px;</span><br><span class="line">    margin-left: -100px;</span><br><span class="line">    background:#999;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案五：absolute-transform"><a href="#方案五：absolute-transform" class="headerlink" title="方案五：absolute+transform"></a>方案五：absolute+transform</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example5&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;块区域垂直居中&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#example5 &#123;</span><br><span class="line">    width: 400px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background: #161616;</span><br><span class="line">    color: #fff;</span><br><span class="line">    position: relative;</span><br><span class="line">	margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line">#example5 .inner&#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    background: #999;</span><br><span class="line">    transform: translateX(-50%) translateY(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案六-利用margin：auto-居中"><a href="#方案六-利用margin：auto-居中" class="headerlink" title="方案六 利用margin：auto 居中"></a>方案六 利用margin：auto 居中</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;expample6&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;Content here&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#expample6 &#123;</span><br><span class="line">    width: 400px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background: #eee;</span><br><span class="line">    position: relative;</span><br><span class="line">		margin-bottom:20px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#expample6 .inner &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    left: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    margin: auto;</span><br><span class="line">    height: 50px;</span><br><span class="line">    width: 70%;</span><br><span class="line">    background: #aaa;</span><br><span class="line">    color:#222;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案七-利用-Flex布局-居中"><a href="#方案七-利用-Flex布局-居中" class="headerlink" title="方案七 利用 Flex布局 居中"></a>方案七 利用 Flex布局 居中</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;expample7&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;Content here&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">#expample7 &#123;</span><br><span class="line">    width: 400px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background: #eee;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#expample7 .inner &#123;</span><br><span class="line">    height: 50px;</span><br><span class="line">    width: 70%;</span><br><span class="line">    background: #aaa;</span><br><span class="line">    color:#222;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>webpack优化前端性能 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、背景随着前端的项目逐渐扩大，必然会带来的一个问题就是性能
+尤其在大型复杂的项目中，前端业务可能因为一个小小的数据依赖，导致整个页面卡顿甚至奔溃
+一般项目在完成后，会通过webpack进行打包，利,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="webpack优化前端性能 - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、背景随着前端的项目逐渐扩大，必然会带来的一个问题就是性能
+尤其在大型复杂的项目中，前端业务可能因为一个小小的数据依赖，导致整个页面卡顿甚至奔溃
+一般项目在完成后，会通过webpack进行打包，利,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="webpack优化前端性能 - lgz-BLOG"/>
+    <meta property="og:description" content="一、背景随着前端的项目逐渐扩大，必然会带来的一个问题就是性能
+尤其在大型复杂的项目中，前端业务可能因为一个小小的数据依赖，导致整个页面卡顿甚至奔溃
+一般项目在完成后，会通过webpack进行打包，利,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">webpack优化前端性能</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">webpack优化前端性能</h1>
+        <div class="stuff">
+            <span>十月 09, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>随着前端的项目逐渐扩大，必然会带来的一个问题就是性能</p>
+<p>尤其在大型复杂的项目中，前端业务可能因为一个小小的数据依赖，导致整个页面卡顿甚至奔溃</p>
+<p>一般项目在完成后，会通过<code>webpack</code>进行打包，利用<code>webpack</code>对前端项目性能优化是一个十分重要的环节</p>
+<h2 id="二、如何优化"><a href="#二、如何优化" class="headerlink" title="二、如何优化"></a>二、如何优化</h2><p>通过<code>webpack</code>优化前端的手段有：</p>
+<ul>
+<li>JS代码压缩</li>
+<li>CSS代码压缩</li>
+<li>Html文件代码压缩</li>
+<li>文件大小压缩</li>
+<li>图片压缩</li>
+<li>Tree Shaking</li>
+<li>代码分离</li>
+<li>内联 chunk</li>
+</ul>
+<h3 id="JS代码压缩"><a href="#JS代码压缩" class="headerlink" title="JS代码压缩"></a>JS代码压缩</h3><p><code>terser</code>是一个<code>JavaScript</code>的解释、绞肉机、压缩机的工具集，可以帮助我们压缩、丑化我们的代码，让<code>bundle</code>更小</p>
+<p>在<code>production</code>模式下，<code>webpack</code> 默认就是使用 <code>TerserPlugin</code> 来处理我们的代码的。如果想要自定义配置它，配置方法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">TerserPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;terser-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">optimization</span>: &#123;</span><br><span class="line">        <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">minimizer</span>: [</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">TerserPlugin</span>(&#123;</span><br><span class="line">                <span class="attr">parallel</span>: <span class="literal">true</span> <span class="comment">// 电脑cpu核数-1</span></span><br><span class="line">            &#125;)</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>属性介绍如下：</p>
+<ul>
+<li>extractComments：默认值为true，表示会将注释抽取到一个单独的文件中，开发阶段，我们可设置为 false ，不保留注释</li>
+<li>parallel：使用多进程并发运行提高构建的速度，默认值是true，并发运行的默认数量： os.cpus().length - 1</li>
+<li>terserOptions：设置我们的terser相关的配置：</li>
+<li>compress：设置压缩相关的选项，mangle：设置丑化相关的选项，可以直接设置为true</li>
+<li>mangle：设置丑化相关的选项，可以直接设置为true</li>
+<li>toplevel：底层变量是否进行转换</li>
+<li>keep_classnames：保留类的名称</li>
+<li>keep_fnames：保留函数的名称</li>
+</ul>
+<h3 id="CSS代码压缩"><a href="#CSS代码压缩" class="headerlink" title="CSS代码压缩"></a>CSS代码压缩</h3><p><code>CSS</code>压缩通常是去除无用的空格等，因为很难去修改选择器、属性的名称、值等</p>
+<p>CSS的压缩我们可以使用另外一个插件：<code>css-minimizer-webpack-plugin</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install css-minimizer-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+
+<p>配置方法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">CssMinimizerPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;css-minimizer-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">optimization</span>: &#123;</span><br><span class="line">        <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">minimizer</span>: [</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">CssMinimizerPlugin</span>(&#123;</span><br><span class="line">                <span class="attr">parallel</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Html文件代码压缩"><a href="#Html文件代码压缩" class="headerlink" title="Html文件代码压缩"></a>Html文件代码压缩</h3><p>使用<code>HtmlWebpackPlugin</code>插件来生成<code>HTML</code>的模板时候，通过配置属性<code>minify</code>进行<code>html</code>优化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">plugin</span>:[</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">HtmlwebpackPlugin</span>(&#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="attr">minify</span>:&#123;</span><br><span class="line">                <span class="attr">minifyCSS</span>:<span class="literal">false</span>, <span class="comment">// 是否压缩css</span></span><br><span class="line">                <span class="attr">collapseWhitespace</span>:<span class="literal">false</span>, <span class="comment">// 是否折叠空格</span></span><br><span class="line">                <span class="attr">removeComments</span>:<span class="literal">true</span> <span class="comment">// 是否移除注释</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>设置了<code>minify</code>，实际会使用另一个插件<code>html-minifier-terser</code></p>
+<h3 id="文件大小压缩"><a href="#文件大小压缩" class="headerlink" title="文件大小压缩"></a>文件大小压缩</h3><p>对文件的大小进行压缩，减少<code>http</code>传输过程中宽带的损耗</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install compression-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">ComepressionPlugin</span>(&#123;</span><br><span class="line">    <span class="attr">test</span>:<span class="regexp">/\.(css|js)$/</span>,  <span class="comment">// 哪些文件需要压缩</span></span><br><span class="line">    <span class="attr">threshold</span>:<span class="number">500</span>, <span class="comment">// 设置文件多大开始压缩</span></span><br><span class="line">    <span class="attr">minRatio</span>:<span class="number">0.7</span>, <span class="comment">// 至少压缩的比例</span></span><br><span class="line">    <span class="attr">algorithm</span>:<span class="string">&quot;gzip&quot;</span>, <span class="comment">// 采用的压缩算法</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h3><p>一般来说在打包之后，一些图片文件的大小是远远要比 <code>js</code> 或者 <code>css</code> 文件要来的大，所以图片压缩较为重要</p>
+<p>配置方法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">  <span class="attr">rules</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">test</span>: <span class="regexp">/\.(png|jpg|gif)$/</span>,</span><br><span class="line">      <span class="attr">use</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">loader</span>: <span class="string">&#x27;file-loader&#x27;</span>,</span><br><span class="line">          <span class="attr">options</span>: &#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&#x27;[name]_[hash].[ext]&#x27;</span>,</span><br><span class="line">            <span class="attr">outputPath</span>: <span class="string">&#x27;images/&#x27;</span>,</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">loader</span>: <span class="string">&#x27;image-webpack-loader&#x27;</span>,</span><br><span class="line">          <span class="attr">options</span>: &#123;</span><br><span class="line">            <span class="comment">// 压缩 jpeg 的配置</span></span><br><span class="line">            <span class="attr">mozjpeg</span>: &#123;</span><br><span class="line">              <span class="attr">progressive</span>: <span class="literal">true</span>,</span><br><span class="line">              <span class="attr">quality</span>: <span class="number">65</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 使用 imagemin**-optipng 压缩 png，enable: false 为关闭</span></span><br><span class="line">            <span class="attr">optipng</span>: &#123;</span><br><span class="line">              <span class="attr">enabled</span>: <span class="literal">false</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 使用 imagemin-pngquant 压缩 png</span></span><br><span class="line">            <span class="attr">pngquant</span>: &#123;</span><br><span class="line">              <span class="attr">quality</span>: <span class="string">&#x27;65-90&#x27;</span>,</span><br><span class="line">              <span class="attr">speed</span>: <span class="number">4</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 压缩 gif 的配置</span></span><br><span class="line">            <span class="attr">gifsicle</span>: &#123;</span><br><span class="line">              <span class="attr">interlaced</span>: <span class="literal">false</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 开启 webp，会把 jpg 和 png 图片压缩为 webp 格式</span></span><br><span class="line">            <span class="attr">webp</span>: &#123;</span><br><span class="line">              <span class="attr">quality</span>: <span class="number">75</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="Tree-Shaking"><a href="#Tree-Shaking" class="headerlink" title="Tree Shaking"></a>Tree Shaking</h3><p><code>Tree Shaking</code> 是一个术语，在计算机中表示消除死代码，依赖于<code>ES Module</code>的静态语法分析（不执行任何的代码，可以明确知道模块的依赖关系）</p>
+<p>在<code>webpack</code>实现<code>Trss shaking</code>有两种不同的方案：</p>
+<ul>
+<li>usedExports：通过标记某些函数是否被使用，之后通过Terser来进行优化的</li>
+<li>sideEffects：跳过整个模块&#x2F;文件，直接查看该文件是否有副作用</li>
+</ul>
+<p>两种不同的配置方案， 有不同的效果</p>
+<h4 id="usedExports"><a href="#usedExports" class="headerlink" title="usedExports"></a>usedExports</h4><p>配置方法也很简单，只需要将<code>usedExports</code>设为<code>true</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">optimization</span>:&#123;</span><br><span class="line">        usedExports</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用之后，没被用上的代码在<code>webpack</code>打包中会加入<code>unused harmony export mul</code>注释，用来告知 <code>Terser</code> 在优化时，可以删除掉这段代码</p>
+<p>如下面<code>sum</code>函数没被用到，<code>webpack</code>打包会添加注释，<code>terser</code>在优化时，则将该函数去掉</p>
+<p><img src="https://static.vue-js.com/21b2e200-aee4-11eb-85f6-6fac77c0c9b3.png" alt="img"></p>
+<h4 id="sideEffects"><a href="#sideEffects" class="headerlink" title="sideEffects"></a>sideEffects</h4><p><code>sideEffects</code>用于告知<code>webpack compiler</code>哪些模块时有副作用，配置方法是在<code>package.json</code>中设置<code>sideEffects</code>属性</p>
+<p>如果<code>sideEffects</code>设置为false，就是告知<code>webpack</code>可以安全的删除未用到的<code>exports</code></p>
+<p>如果有些文件需要保留，可以设置为数组的形式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;sideEffecis&quot;</span>:[</span><br><span class="line">    <span class="string">&quot;./src/util/format.js&quot;</span>,</span><br><span class="line">    <span class="string">&quot;*.css&quot;</span> <span class="comment">// 所有的css文件</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>上述都是关于<code>javascript</code>的<code>tree shaking</code>，<code>css</code>同样也能够实现<code>tree shaking</code></p>
+<h4 id="css-tree-shaking"><a href="#css-tree-shaking" class="headerlink" title="css tree shaking"></a>css tree shaking</h4><p><code>css</code>进行<code>tree shaking</code>优化可以安装<code>PurgeCss</code>插件</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install purgecss-plugin-webpack -D</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">PurgeCssPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;purgecss-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">plugins</span>:[</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">PurgeCssPlugin</span>(&#123;</span><br><span class="line">            <span class="attr">path</span>:glob.<span class="title function_">sync</span>(<span class="string">`<span class="subst">$&#123;path.resolve(<span class="string">&#x27;./src&#x27;</span>)&#125;</span>/**/*`</span>), &#123;<span class="attr">nodir</span>:<span class="literal">true</span>&#125;<span class="comment">// src里面的所有文件</span></span><br><span class="line">            <span class="attr">satelist</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    <span class="attr">standard</span>:[<span class="string">&quot;html&quot;</span>]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>paths：表示要检测哪些目录下的内容需要被分析，配合使用glob</li>
+<li>默认情况下，Purgecss会将我们的html标签的样式移除掉，如果我们希望保留，可以添加一个safelist的属性</li>
+</ul>
+<h3 id="代码分离"><a href="#代码分离" class="headerlink" title="代码分离"></a>代码分离</h3><p>将代码分离到不同的<code>bundle</code>中，之后我们可以按需加载，或者并行加载这些文件</p>
+<p>默认情况下，所有的<code>JavaScript</code>代码（业务代码、第三方依赖、暂时没有用到的模块）在首页全部都加载，就会影响首页的加载速度</p>
+<p>代码分离可以分出出更小的<code>bundle</code>，以及控制资源加载优先级，提供代码的加载性能</p>
+<p>这里通过<code>splitChunksPlugin</code>来实现，该插件<code>webpack</code>已经默认安装和集成，只需要配置即可</p>
+<p>默认配置中，chunks仅仅针对于异步（async）请求，我们可以设置为initial或者all</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">optimization</span>:&#123;</span><br><span class="line">        <span class="attr">splitChunks</span>:&#123;</span><br><span class="line">            <span class="attr">chunks</span>:<span class="string">&quot;all&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>splitChunks</code>主要属性有如下：</p>
+<ul>
+<li>Chunks，对同步代码还是异步代码进行处理</li>
+<li>minSize： 拆分包的大小, 至少为minSize，如何包的大小不超过minSize，这个包不会拆分</li>
+<li>maxSize： 将大于maxSize的包，拆分为不小于minSize的包</li>
+<li>minChunks：被引入的次数，默认是1</li>
+</ul>
+<h3 id="内联chunk"><a href="#内联chunk" class="headerlink" title="内联chunk"></a>内联chunk</h3><p>可以通过<code>InlineChunkHtmlPlugin</code>插件将一些<code>chunk</code>的模块内联到<code>html</code>，如<code>runtime</code>的代码（对模块进行解析、加载、模块信息相关的代码），代码量并不大，但是必须加载的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">InlineChunkHtmlPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;react-dev-utils/InlineChunkHtmlPlugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">plugin</span>:[</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">InlineChunkHtmlPlugin</span>(<span class="title class_">HtmlWebpackPlugin</span>,[<span class="regexp">/runtime.+\.js/</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p>关于<code>webpack</code>对前端性能的优化，可以通过文件体积大小入手，其次还可通过分包的形式、减少http请求次数等方式，实现对前端性能的优化</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

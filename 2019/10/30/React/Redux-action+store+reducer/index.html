@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Redux action+store+reducer - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="
+redux的核心概念就是store、action、reducer，从调用关系来看如下所示
+
+1234567891011121314151617181920212223242526272829303,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Redux action+store+reducer - lgz-BLOG"/>
+    <meta name="twitter:description" content="
+redux的核心概念就是store、action、reducer，从调用关系来看如下所示
+
+1234567891011121314151617181920212223242526272829303,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Redux action+store+reducer - lgz-BLOG"/>
+    <meta property="og:description" content="
+redux的核心概念就是store、action、reducer，从调用关系来看如下所示
+
+1234567891011121314151617181920212223242526272829303,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Redux action+store+reducer</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Redux action+store+reducer</h1>
+        <div class="stuff">
+            <span>十月 30, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Redux/" rel="tag">Redux</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <blockquote>
+<p>redux的核心概念就是store、action、reducer，从调用关系来看如下所示</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">store.dispatch(action) --&gt; reducer(state, action) --&gt; final state</span><br><span class="line">// reducer方法, 传入的参数有两个</span><br><span class="line">// state: 当前的state</span><br><span class="line">// action: 当前触发的行为, &#123;type: &#x27;xx&#x27;&#125;</span><br><span class="line">// 返回值: 新的state</span><br><span class="line">var reducer = function(state, action)&#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case &#x27;add_todo&#x27;:</span><br><span class="line">            return state.concat(action.text);</span><br><span class="line">        default:</span><br><span class="line">            return state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 创建store, 传入两个参数</span><br><span class="line">// 参数1: reducer 用来修改state</span><br><span class="line">// 参数2(可选): [], 默认的state值,如果不传, 则为undefined</span><br><span class="line">var store = redux.createStore(reducer, []);</span><br><span class="line"></span><br><span class="line">// 通过 store.getState() 可以获取当前store的状态(state)</span><br><span class="line">// 默认的值是 createStore 传入的第二个参数</span><br><span class="line">console.log(&#x27;state is: &#x27; + store.getState());  // state is:</span><br><span class="line"></span><br><span class="line">// 通过 store.dispatch(action) 来达到修改 state 的目的</span><br><span class="line">// 注意: 在redux里,唯一能够修改state的方法,就是通过 store.dispatch(action)</span><br><span class="line">store.dispatch(&#123;type: &#x27;add_todo&#x27;, text: &#x27;读书&#x27;&#125;);</span><br><span class="line">// 打印出修改后的state</span><br><span class="line">console.log(&#x27;state is: &#x27; + store.getState());  // state is: 读书</span><br><span class="line"></span><br><span class="line">store.dispatch(&#123;type: &#x27;add_todo&#x27;, text: &#x27;写作&#x27;&#125;);</span><br><span class="line">console.log(&#x27;state is: &#x27; + store.getState());  // state is: 读书,写作</span><br></pre></td></tr></table></figure>
+
+<h2 id="一、store、reducer、action关联"><a href="#一、store、reducer、action关联" class="headerlink" title="一、store、reducer、action关联"></a>一、store、reducer、action关联</h2><p><strong>store</strong></p>
+<ul>
+<li><code>store</code>在这里代表的是数据模型，内部维护了一个<code>state</code>变量</li>
+<li><code>store</code>有两个核心方法，分别是<code>getState</code>、<code>dispatch</code>。前者用来获取<code>store</code>的状态（<code>state</code>），后者用来修改<code>store</code>的状态</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 创建store, 传入两个参数</span><br><span class="line">// 参数1: reducer 用来修改state</span><br><span class="line">// 参数2(可选): [], 默认的state值,如果不传, 则为undefined</span><br><span class="line">var store = redux.createStore(reducer, []);</span><br><span class="line"></span><br><span class="line">// 通过 store.getState() 可以获取当前store的状态(state)</span><br><span class="line">// 默认的值是 createStore 传入的第二个参数</span><br><span class="line">console.log(&#x27;state is: &#x27; + store.getState());  // state is:</span><br><span class="line"></span><br><span class="line">// 通过 store.dispatch(action) 来达到修改 state 的目的</span><br><span class="line">// 注意: 在redux里,唯一能够修改state的方法,就是通过 store.dispatch(action)</span><br><span class="line">store.dispatch(&#123;type: &#x27;add_todo&#x27;, text: &#x27;读书&#x27;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>action</strong></p>
+<ul>
+<li>对行为（如用户行为）的抽象，在<code>redux</code>里是一个普通的<code>js</code>对象</li>
+<li><code>action</code>必须有一个<code>type</code>字段来标识这个行为的类型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;type:&#x27;add_todo&#x27;, text:&#x27;读书&#x27;&#125;</span><br><span class="line">&#123;type:&#x27;add_todo&#x27;, text:&#x27;写作&#x27;&#125;</span><br><span class="line">&#123;type:&#x27;add_todo&#x27;, text:&#x27;睡觉&#x27;, time:&#x27;晚上&#x27;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>reducer</strong></p>
+<ul>
+<li>一个普通的函数，用来修改<code>store</code>的状态。传入两个参数 <code>state</code>、<code>action</code></li>
+<li>其中，<code>state</code>为当前的状态（可通过<code>store.getState()</code>获得），而<code>action</code>为当前触发的行为（通过<code>store.dispatch(action)</code>调用触发）</li>
+<li><code>reducer(state, action)</code> 返回的值，就是<code>store</code>最新的<code>state</code>值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// reducer方法, 传入的参数有两个</span><br><span class="line">// state: 当前的state</span><br><span class="line">// action: 当前触发的行为, &#123;type: &#x27;xx&#x27;&#125;</span><br><span class="line">// 返回值: 新的state</span><br><span class="line">var reducer = function(state, action)&#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case &#x27;add_todo&#x27;:</span><br><span class="line">            return state.concat(action.text);</span><br><span class="line">        default:</span><br><span class="line">            return state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、关于actionCreator"><a href="#二、关于actionCreator" class="headerlink" title="二、关于actionCreator"></a>二、关于actionCreator</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">actionCreator(args) =&gt; action</span><br><span class="line">var addTodo = function(text)&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        type: &#x27;add_todo&#x27;,</span><br><span class="line">        text: text</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">addTodo(&#x27;睡觉&#x27;);  // 返回：&#123;type: &#x27;add_todo&#x27;, text: &#x27;睡觉&#x27;&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

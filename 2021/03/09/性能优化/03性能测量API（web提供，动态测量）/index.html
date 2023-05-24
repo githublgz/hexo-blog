@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>前端性能优化-03 - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Web Api
+
+
+页面渲染原理
+
+
+浏览器解释器  将他们翻译成浏览器认识的形式。
+
+
+
+回流
+里纳西不断的回流：
+
+
+fastdom批量对DOM的读写操作     先执行读操作  后执行写操作
+,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="前端性能优化-03 - lgz-BLOG"/>
+    <meta name="twitter:description" content="Web Api
+
+
+页面渲染原理
+
+
+浏览器解释器  将他们翻译成浏览器认识的形式。
+
+
+
+回流
+里纳西不断的回流：
+
+
+fastdom批量对DOM的读写操作     先执行读操作  后执行写操作
+,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="前端性能优化-03 - lgz-BLOG"/>
+    <meta property="og:description" content="Web Api
+
+
+页面渲染原理
+
+
+浏览器解释器  将他们翻译成浏览器认识的形式。
+
+
+
+回流
+里纳西不断的回流：
+
+
+fastdom批量对DOM的读写操作     先执行读操作  后执行写操作
+,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">前端性能优化-03</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">前端性能优化-03</h1>
+        <div class="stuff">
+            <span>三月 09, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="Web-Api"><a href="#Web-Api" class="headerlink" title="Web Api"></a>Web Api</h2><p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427135134108.png" alt="image-20220427135134108"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427135953185.png" alt="image-20220427135953185"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427135638721.png" alt="image-20220427135638721"></p>
+<h2 id="页面渲染原理"><a href="#页面渲染原理" class="headerlink" title="页面渲染原理"></a>页面渲染原理</h2><p><strong><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427140026412.png" alt="image-20220427140026412"></strong></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427140215339.png" alt="image-20220427140215339"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427140251251.png" alt="image-20220427140251251"></p>
+<p>浏览器解释器  将他们翻译成浏览器认识的形式。</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427140455463.png" alt="image-20220427140455463"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427140508402.png" alt="image-20220427140508402"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427140829766.png" alt="image-20220427140829766"></p>
+<h2 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h2><p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427141037729.png" alt="image-20220427141037729"></p>
+<p>里纳西不断的回流：</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427141659895.png" alt="image-20220427141659895"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427141728695.png" alt="image-20220427141728695"></p>
+<h2 id="fastdom"><a href="#fastdom" class="headerlink" title="fastdom"></a>fastdom</h2><p>批量对DOM的读写操作     先执行读操作  后执行写操作</p>
+<p>强制布局：很卡顿（连续的强制读写更新） 但是使用了fastdom(读写分离)后执行就会流畅</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427144318668.png" alt="image-20220427144318668"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427144353664.png" alt="image-20220427144353664"></p>
+<h2 id="复合线程与图层"><a href="#复合线程与图层" class="headerlink" title="复合线程与图层"></a>复合线程与图层</h2><p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427144903921.png" alt="image-20220427144903921"></p>
+<p>在控制太我们通过frame就可以查看对应图层</p>
+<p>这些不会触发布局和重绘，只会触发复合的过程给他们一个图层</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427145049336.png" alt="image-20220427145049336"></p>
+<p>查看图层：</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427145130349.png" alt="image-20220427145130349"></p>
+<p>查看交互点击第一个录制，然后停止就可以查看</p>
+<p>第二个刷新只页面重新加载  。</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427145223610.png" alt="image-20220427145223610"></p>
+<p>图层越多 开销也会越大。</p>
+<h2 id="减少重绘"><a href="#减少重绘" class="headerlink" title="减少重绘"></a>减少重绘</h2><p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427150359238.png" alt="image-20220427150359238"></p>
+<p>render：选中第一个它会告诉我们谁会重绘并且标问绿色</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427150050337.png" alt="image-20220427150050337"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427150133967.png" alt="image-20220427150133967"></p>
+<h2 id="高频事件处理函数-防抖"><a href="#高频事件处理函数-防抖" class="headerlink" title="高频事件处理函数 防抖"></a>高频事件处理函数 防抖</h2><p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427150900593.png" alt="image-20220427150900593"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427151047338.png" alt="image-20220427151047338"></p>
+<p>事件触发  js  触发视觉变换   1帧开始    raf在  之前进行布局和绘制，</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427150955637.png" alt="image-20220427150955637"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427151104506.png" alt="image-20220427151104506"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

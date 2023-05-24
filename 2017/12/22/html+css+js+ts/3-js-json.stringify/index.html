@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>js JSON.Stringify - lgz-BLOG</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="一、JSON.stringify参数详解
+stringify方法顾名思义，就是把JSON序列化，其语法如下
+
+1JSON.stringify(value [, replacer] [, space],"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="lgz-BLOG" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="js JSON.Stringify - lgz-BLOG"/>
+    <meta name="twitter:description" content="一、JSON.stringify参数详解
+stringify方法顾名思义，就是把JSON序列化，其语法如下
+
+1JSON.stringify(value [, replacer] [, space],"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="lgz-BLOG"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="js JSON.Stringify - lgz-BLOG"/>
+    <meta property="og:description" content="一、JSON.stringify参数详解
+stringify方法顾名思义，就是把JSON序列化，其语法如下
+
+1JSON.stringify(value [, replacer] [, space],"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">lgz-BLOG</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">js JSON.Stringify</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">js JSON.Stringify</h1>
+        <div class="stuff">
+            <span>十二月 22, 2017</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、JSON-stringify参数详解"><a href="#一、JSON-stringify参数详解" class="headerlink" title="一、JSON.stringify参数详解"></a>一、JSON.stringify参数详解</h2><ul>
+<li><code>stringify</code>方法顾名思义，就是把<code>JSON</code>序列化，其语法如下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(value [, replacer] [, space])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>value</code>：是必选字段。就是你输入的对象、如数组等</p>
+</li>
+<li><p>replacer：这个是可选的。它又分为2</p>
+<p>种方式，一种是数组，第二种是方法【过滤函数，或者key的过滤数组（只有在数组中的会展示）】</p>
+<ul>
+<li>情况一：<code>replacer</code>为数组时，通过后面的实验可以知道，它是和第一个参数<code>value</code>有关系的。一般来说，系列化后的结果是通过键值对来进行表示的。 所以，如果此时第二个参数的值在第一个存在，那么就以第二个参数的值做key，第一个参数的值为value进行表示，如果不存在，就忽略。</li>
+<li>情况二：<code>replacer</code>为方法时，那很简单，就是说把系列化后的每一个对象（记住是每一个）传进方法里面进行处理。</li>
+</ul>
+</li>
+<li><p>&#96;&#96;&#96;<br>space</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  ：就是用什么来做分隔符的【格式化前面的空格字符】</span><br><span class="line"></span><br><span class="line">  - 如果省略的话，那么显示出来的值就没有分隔符，直接输出来</span><br><span class="line">  - 如果是一个数字的话，那么它就定义缩进几个字符，当然如果大于`10` ，则默认为`10`，因为最大值为`10`</span><br><span class="line">  - 如果是一些转义字符，比如`\t`，表示回车，那么它每行一个回车。</span><br><span class="line">  - 如果仅仅是字符串，就在每行输出值的时候把这些字符串附加上去。当然，最大长度也是`10`个字符</span><br><span class="line"></span><br><span class="line">## 二、只传一个参数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>var obj &#x3D; {<br>name:”poetries”,<br>age:22,<br>job:”FED”,<br>location:”shenzhen of China”<br>};</p>
+</li>
+</ul>
+<p>JSON.stringify(obj)  &#x2F;&#x2F;“{“name”:”poetries”,”age”:22,”job”:”FED”,”location”:”shenzhen of China”}”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**注意点**</span><br><span class="line"></span><br><span class="line">&gt; `JSON.stringify`对`obj`里面的数据类型有一些要求</span><br><span class="line"></span><br><span class="line">- 非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>JSON.stringify({x: 5, y: 6}) &#x2F;&#x2F; ‘{“x”:5,”y”:6}’ 或者 ‘{“y”:6,”x”:5}’ 都可能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值</span><br><span class="line">- `undefined`、任意的函数以及 `symbol` 值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 `null`（出现在数组中时）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>var obj &#x3D; {<br>  “undefined”:undefined,<br>  “null”:null,<br>  “true”:true,<br>  “func”:function(){},<br>  “symbol”:Symbol(“”)<br>};<br>JSON.stringify(obj); &#x2F;&#x2F;“{“null”:null,”true”:true}”</p>
+<p>&#x2F;&#x2F; 出现在数组中时被转化成null<br>var arr &#x3D; [undefined,Symbol(“”),function(){}];<br>JSON.stringify(arr); &#x2F;&#x2F;[null,null,null]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 不可枚举的属性会被忽略</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>JSON.stringify( Object.create(null, { x: { value: ‘x’, enumerable: false }, y: { value: ‘y’, enumerable: true } }) );<br>&#x2F;&#x2F; ‘{“y”:”y”}’</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 三、传递两个参数的时候</span><br><span class="line"></span><br><span class="line">&gt; - 第二个参数可以是一个过滤函数，也可以是一个数组</span><br><span class="line">&gt; - 当为数组时则只有包含在这个数组中的属性名才会被序列化到最终的 `JSON` 字符串中</span><br><span class="line"></span><br><span class="line">### 3.1 过滤函数</span><br><span class="line"></span><br><span class="line">- 注意点：</span><br><span class="line">  - 这里一定要`return`一个值给下一个遍历函数作为参数传入，如果不`return`的话，后面的遍历就没法玩下去了</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>var obj &#x3D; {<br>  name:”poetries”,<br>  age:22,<br>  job:”FED”,<br>  location:”shenzhen of China”<br>};</p>
+<p>JSON.stringify(obj, (key,value) &#x3D;&gt; {<br>   console.log(key)<br>   return value; &#x2F;&#x2F; 这个是必须的，用于下一次的循环迭代<br>})</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 3.2 数组</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>var obj &#x3D; {<br>  name:”poetries”,<br>  age:22,<br>  job:”FED”,<br>  location:”shenzhen of China”<br>};<br>JSON.stringify(obj, [“name”, “age”]);</p>
+<p>&#x2F;&#x2F;job、location由于不在列表里，所以没被序列化<br>&#x2F;&#x2F;“{“name”:”poetries”,”age”:22}”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 四、传递三个参数的时候</span><br><span class="line"></span><br><span class="line">&gt; 第三参数space用来控制结果字符串里面的间距</span><br><span class="line"></span><br><span class="line">- 如果是一个数字, 则在字符串化时每一级别会比上一级别缩进多这个数字值的空格（最多10个空格）</span><br><span class="line">- 如果是一个字符串，则每一级别会比上一级别多缩进用该字符串（或该字符串的前十个字符）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>var obj &#x3D; {name:”poetries”,age:22,job:”FED”,location:”shenzhen of China”,lov:{age:11}};<br>JSON.stringify(obj, null,10);<br>&#x2F;&#x2F; &#x2F;&#x2F;每一个层级比上一个多10个空格<br>“{<br>          “name”: “poetries”,<br>          “age”: 22,<br>          “job”: “FED”,<br>          “location”: “shenzhen of China”,<br>          “lov”: {<br>                    “age”: 11<br>          }<br>}”<br>var obj &#x3D; {<br>  name:”poetries”,<br>  age:22,<br>  job:”FED”,<br>  location:”shenzhen of China”,<br>  lov:{<br>    age:11<br>  }<br>};<br>JSON.stringify(obj, null,”\n”);<br>&#x2F;&#x2F; 每一个层级比上一个多了一个回车符<br>“{</p>
+<p>“name”: “poetries”,</p>
+<p>“age”: 22,</p>
+<p>“job”: “FED”,</p>
+<p>“location”: “shenzhen of China”,</p>
+<p>“lov”: {</p>
+<p>“age”: 11</p>
+<p>}<br>}”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 五、toJSON 方法</span><br><span class="line"></span><br><span class="line">&gt; 如果一个被序列化的对象拥有 `toJSON` 方法，那么该 `toJSON` 方法就会覆盖该对象默认的序列化行为</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>var obj &#x3D; {<br>  name:”poetries”,<br>  info:{<br>    age:18,<br>    sex:”male”<br>  },<br>  toJSON:function(){<br>    return “via toJSON”;<br>  }<br>};</p>
+<p>JSON.stringify(obj); &#x2F;&#x2F; “”via toJSON””<br>&#96;&#96;&#96;</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
